@@ -1,0 +1,7 @@
+<meta>
+	<info author="Crazy" version="2.0" type="script" />
+	<script src="client.lua" type="client" />
+	<script src="server.lua" type="server" />
+	<script src="server_utils.lua" type="server" />
+	<script src="client_utils.lua" type="client" />
+</meta>

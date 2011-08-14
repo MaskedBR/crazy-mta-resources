@@ -1,0 +1,76 @@
+<html>
+	<link rel="stylesheet" href="style.css" type="text/css">
+    <body>
+	<title>Ban list by Crazy</title>
+		<table border="3">
+			<tr>
+				<td>Nickname</td>
+				<td>Reason</td>
+				<td>IP</td>
+				<td>Serial</td>
+				<td>Banner</td>
+				<td>Ban date</td>
+				<td>Unban date</td>
+			</tr>
+			<* bans = getBans()
+				for i,v in ipairs(bans) do
+					httpWrite("<tr>")
+					if getBanNick(v) then
+						httpWrite("<td>"..getBanNick(v).."</td>")
+					else
+						httpWrite("<td>Unknown</td>")
+					end
+					if getBanReason(v) then
+						httpWrite("<td>"..getBanReason(v).."</td>")
+					else
+						httpWrite("<td>Unknown</td>")
+					end
+					if getBanIP(v) then
+						httpWrite("<td>"..getBanIP(v).."</td>")
+					else
+						httpWrite("<td>Unknown</td>")
+					end
+					if getBanSerial(v) then
+						httpWrite("<td>"..getBanSerial(v).."</td>")
+					else
+						httpWrite("<td>Unknown</td>")
+					end
+					if getBanAdmin(v) then
+						httpWrite("<td>"..getBanAdmin(v).."</td>")
+					else
+						httpWrite("<td>Unknown</td>")
+					end
+					if getBanTime(v) then
+						local time = getBanTime(v)
+						local time = getRealTime(time)
+						time.month = time.month + 1
+						for g,m in pairs(time) do
+							if m < 10 then
+								time[g] = "0"..m
+							end
+						end
+						local output = time.hour..":"..time.minute..":"..time.second.." "..time.monthday.."."..time.month.."."..(1900+time.year)
+						httpWrite("<td>"..output.."</td>")
+					else
+						httpWrite("<td>Unknown</td>")
+					end
+					if getUnbanTime(v) then
+						local time = getUnbanTime(v)
+						local time = getRealTime(time)
+						time.month = time.month + 1
+						for g,m in pairs(time) do
+							if m < 10 then
+								time[g] = "0"..m
+							end
+						end
+						local output = time.hour..":"..time.minute..":"..time.second.." "..time.monthday.."."..time.month.."."..(1900+time.year)
+						httpWrite("<td>"..output.."</td>")
+					else
+						httpWrite("<td>Unknown</td>")
+					end
+					httpWrite("</tr>")
+				end
+			*>
+		</table>
+    </body>
+<html>
