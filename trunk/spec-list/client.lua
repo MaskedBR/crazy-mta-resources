@@ -7,7 +7,9 @@ function drawList()
 		if #list ~= 0 then
 			dxDrawText("Spectating:",screenX*.85,screenY*.3,0,0,tocolor(255,0,0,255))
 			for i,v in ipairs(list) do
-				dxDrawText(getPlayerName(v),screenX*.85,screenY*.3+(i*(screenY*0.02)),0,0,tocolor(0,255,0,255))
+				if isElement(v) then
+					dxDrawText(getPlayerName(v),screenX*.85,screenY*.3+(i*(screenY*0.02)),0,0,tocolor(0,255,0,255))
+				end
 			end
 		end
 	end
