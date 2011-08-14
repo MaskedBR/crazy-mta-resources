@@ -1,0 +1,10 @@
+<meta>
+	<info author="XtremeX.Crazy" version="1" type="script" />
+	<script src="server.lua" type="server" />
+	<settings>
+		<setting name="*usefreeze" value="true" />
+		<setting name="*freezetime" value="[15]" />
+		<setting name="*showarea" value="true" />
+		<setting name="*playsound" value="true" />
+	</settings>
+</meta>

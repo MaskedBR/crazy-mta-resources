@@ -1,0 +1,275 @@
+<events>
+	<group name="Client">
+		<event name="onConsole">
+			<param name="string theMessage" />
+			<param name="account theCurrentAccount" />
+			<description>This event is triggered when a player types a message into his console.</description>
+		</event>
+	</group>
+	<group name="Colshape">
+		<event name="onColShapeHit" >
+			<param name="element hitElement" />
+			<param name="bool matchingDimension" />
+			<description>This event is triggered when the player or a vehicle hits a colshape.</description>
+		</event>
+		<event name="onColShapeLeave" >
+			<param name="element leaveElement" />
+			<param name="bool matchingDimension" />
+			<description>This event is triggered when a player or a vehicle leaves a collision shape.</description>
+		</event>
+	</group>
+	<group name="Element">
+		<event name="onElementDestroy" >
+			<description>This event is triggered when an element gets destroyed by destroyElement or when the creator resource is stopping. It is also triggered when a parent element of this element is destroyed.</description>
+		</event>	
+		<event name="onElementDataChange" >
+			<param name="string theName" />
+			<param name="var theOldValue" />
+			<description>This event is triggered when an elementdata entry for an element changes. A client can perform this change on the element or it can be done using setElementData.</description>
+		</event>
+		<event name="onElementColShapeHit" >
+			<param name="colshape theColShape" />
+			<param name="bool matchingDimension" />
+			<description>This event is triggered when an player or vehicle element collides with a colshape.</description>
+		</event>
+		<event name="onElementColShapeLeave" >
+			<param name="colshape theColShape" />
+			<param name="bool matchingDimension" />
+			<description>This event is triggered when an player or vehicle element leaves the area of a colshape.</description>
+		</event>
+		<event name="onElementClicked" >
+			<param name="string mouseButton" />
+			<param name="string buttonState" />
+			<param name="player playerWhoClicked" />
+			<param name="float clickPosX" />
+			<param name="float clickPosY" />
+			<param name="float clickPosZ" />
+			<description>This event is triggered when an element is clicked on by the client. These events can only trigger when the client has its cursor enabled. It triggers for all three mousebuttons in both their up and down states.</description>
+		</event>
+	</group>
+	<group name="Marker">
+		<event name="onMarkerHit">
+			<param name="player hitPlayer" />
+			<param name="bool matchingDimension" />
+			<description>This event is triggered when a player enters a marker created using createMarker. The source of this event is the marker that got hit by the player.</description>
+		</event>
+		<event name="onMarkerLeave" >
+			<param name="player leftPlayer" />
+			<param name="bool matchingDimension" />
+			<description>This event is triggered when a player leaves the area of a marker created using createMarker.</description>
+		</event>
+	</group>
+	<group name="ped">
+		<event name="onPedWasted">
+			<param name="int totalAmmo" />
+			<param name="element killer" />
+			<param name="int killerWeapon" />
+			<param name="int bodypart" />
+			<param name="bool stealth" />
+			<description>This event is triggered when a ped is killed or dies.</description>
+		</event>
+		<event name="onPedWeaponSwitch">
+			<param name="int previousWeaponID" />
+			<param name="int currentWeaponID" />
+			<description>This event is triggered when a ped switches weapons.</description>
+		</event>
+	</group>
+	<group name="Pickup">
+		<event name="onPickupSpawn">
+			<description>This event is triggered when a pickup is spawned or respawned. </description>
+		</event>
+		<event name="onPickupHit">
+			<param name="player thePlayer" />
+			<description>This event is triggered when a player hits a pickup.</description>
+		</event>
+		<event name="onPickupUse">
+			<param name="player thePlayer" />
+			<description>This event is triggered when a player stands on a pickup while not in a vehicle. </description>
+		</event>
+	</group>
+	<group name="Player">
+		<event name="onPlayerChat">
+			<param name="string message" />
+			<param name="int messageType" />
+			<description>This event is triggered when a pickup is spawned or respawned. </description>
+		</event>
+		<event name="onPlayerConnect">
+			<param name="string playerNick" />
+			<param name="string playerIP" />
+			<param name="string playerUsername" />
+			<param name="string playerSerial" />
+			<description>This event is triggered when a player attempts to connect to the server.</description>
+		</event>
+		<event name="onPlayerChangeNick">
+			<param name="string oldNick" />
+			<param name="string newNick" />
+			<description>This event is triggered when a player changes his nickname.</description>
+		</event>
+		<event name="onPlayerLogin">
+			<param name="account thePreviousAccount" />
+			<param name="account theCurrentAccount" />
+			<param name="bool autoLogin" />
+			<description>This event is triggered when a player logs into their account in-game.</description>
+		</event>
+		<event name="onPlayerLogout">
+			<param name="account thePreviousAccount" />
+			<param name="account theCurrentAccount" />
+			<description>This event is triggered when a user logs out of their account in-game.</description>
+		</event>
+		<event name="onPlayerDamage">
+			<param name="player attacker" />
+			<param name="int attackerweapon" />
+			<param name="int bodypart" />
+			<param name="float loss" />
+			<description>This event is triggered when a player is damaged, in any way. notes: canceling this event has no effect, this event is not triggered when attacked by a team member if friendly fire is enabled.</description>
+		</event>
+		<event name="onPlayerJoin">
+			<description>This event is triggered when a player joins the server.</description>
+		</event>
+		<event name="onPlayerSpawn">
+			<param name="float posX" />
+			<param name="float posY" />
+			<param name="float posZ" />
+			<param name="float spawnRotation" />
+			<param name="team theTeam" />
+			<param name="int theSkin" />
+			<param name="int theInterior" />
+			<param name="int theDimension" />
+			<description>This event is called when a player spawns.</description>
+		</event>
+		<event name="onPlayerWasted">
+			<param name="int totalAmmo" />
+			<param name="element killer" />
+			<param name="int killerWeapon" />
+			<param name="int bodypart" />
+			<param name="bool stealth" />
+			<description>This event is triggered when a player is killed or dies.</description>
+		</event>
+		<event name="onPlayerTarget">
+			<param name="element targettedElement" />
+			<description>This event is triggered when a player targets an element with his crosshair while aiming, or simply facing it while standing close. It's triggered again when the player no longer targets anything.</description>
+		</event>
+		<event name="onPlayerVehicleEnter">
+			<param name="vehicle theVehicle" />
+			<param name="int seat" />
+			<param name="player jacked" />
+			<description>This event is triggered when a player enters a vehicle.</description>
+		</event>
+		<event name="onPlayerVehicleExit">
+			<param name="vehicle theVehicle" />
+			<param name="int seat" />
+			<param name="player jacker" />
+			<description>This event is triggered when a player leaves a vehicle, for whatever reason.</description>
+		</event>
+		<event name="onPlayerWeaponSwitch">
+			<param name="int previousWeaponID" />
+			<param name="int currentWeaponID" />
+			<description>This event is triggered when a player switches weapons.</description>
+		</event>
+		<event name="onPlayerMarkerHit">
+			<param name="marker markerHit" />
+			<param name="bool matchingDimension" />
+			<description>This event is triggered when a player hits a marker.</description>
+		</event>
+		<event name="onPlayerMarkerLeave" >
+			<param name="marker markerLeft" />
+			<param name="bool matchingDimension" />
+			<description>This event is triggered when a player leaves the area of a marker.</description>
+		</event>
+		<event name="onPlayerPickupHit">
+			<param name="pickup pickupHit" />
+			<param name="bool matchingDimension" />
+			<description>This event is triggered when a player hits a pickup.</description>
+		</event>
+		<event name="onPlayerPickupUse">
+			<param name="pickup thePickupToUse" />
+			<description>This event is triggered when a player is standing on a pickup while not being in a vehicle.</description>
+		</event>
+		<event name="onPlayerClick" >
+			<param name="string mouseButton" />
+			<param name="string buttonState" />
+			<param name="element clickedElement" />
+			<param name="float worldPosX" />
+			<param name="float worldPosY" />
+			<param name="float worldPosZ" />
+			<param name="float screenPosX" />
+			<param name="float screenPosY" />
+			<description>This event is triggered when a player clicks using the mouse cursor.</description>
+		</event>
+		<event name="onPlayerPickupUse">
+			<param name="element previousElement" />
+			<param name="element currentElement" />
+			<description>This event is triggered when a player stands on a differnt element than before.</description>
+		</event>
+	</group>
+	<group name="Resource">
+		<event name="onResourcePreStart">
+			<param name="resource startedResource" />
+			<description>This event is triggered when a resource is loaded. If you attach this event to the root element it will called when any resource starts, not just the resource your script is running inside. As such, most of the time you will want to check that the resource passed to this event matches your resource (compare with the value returned by getThisResource) before doing anything. Alternatively you can attach the event to getResourceRootElement(getThisResource()). </description>
+		</event>
+		<event name="onResourceStart">
+			<param name="resource startingResource" />
+			<description>This event is triggered before a resource is loaded. If you attach this event to the root element it will called when any resource starts, not just the resource your script is running inside. As such, most of the time you will want to check that the resource passed to this event matches your resource (compare with the value returned by getThisResource) before doing anything. Alternatively you can attach the event to getResourceRootElement(getThisResource()).</description>
+		</event>
+		<event name="onResourceStop">
+			<param name="element theResourceStopped" />
+			<description>This event is triggered when the resource is stopped. This can occur for a number of reasons: The stop console command was used, The restart console command was used, The resource was modified (the resource will automatically restart), Another resource stopped it using stopResource. </description>
+		</event>
+	</group>
+	<group name="Server">
+		<event name="onBan">
+			<param name="string theIPOrSerial" />
+			<description>This event is triggered when an IP address or serial is banned from the server.</description>
+		</event>
+		<event name="onUnban">
+			<param name="string theIPOrSerial" />
+			<description>This event is triggered when an IP address or serial is unbanned from the server.</description>
+		</event>
+	</group>
+	<group name="Vehicle">
+		<event name="onTrailerAttach">
+			<param name="vehicle theTruck" />
+			<description>This event is triggered when a trailer is attached to a truck.</description>
+		</event>
+		<event name="onTrailerDetach">
+			<param name="vehicle theTruck" />
+			<description>This event is triggered when a trailer is detached from a truck.</description>
+		</event>
+		<event name="onVehicleDamage">
+			<param name="float loss" />
+			<description>This event is triggered when a vehicle encounters damage.</description>
+		</event>
+		<event name="onVehicleRespawn">
+			<param name="bool exploded" />
+			<description>This event is triggered when a vehicle is respawned due. See toggleVehicleRespawn.</description>
+		</event>
+		<event name="onVehicleStartEnter">
+			<param name="player enteringPlayer" />
+			<param name="int seat" />
+			<param name="player jacked" />
+			<param name="int door" />
+			<description>This event is triggered when a player starts to enter a vehicle. This event can be used to cancel entry, if necessary.</description>
+		</event>
+		<event name="onVehicleStartExit">
+			<param name="player exitingPlayer" />
+			<param name="int seat" />
+			<param name="player jacker" />
+			<description>This event is triggered when a player leaves a vehicle, for whatever reason.</description>
+		</event>
+		<event name="onVehicleEnter">
+			<param name="player enteringPlayer" />
+			<param name="int seat" />
+			<param name="player jacked" />
+			<description>This event is triggered when a player enters a vehicle.</description>
+		</event>
+		<event name="onVehicleExit">
+			<param name="player exitingPlayer" />
+			<param name="int seat" />
+			<param name="player jacker" />
+			<description>This event is triggered when a player leaves a vehicle.</description>
+		</event>
+		<event name="onVehicleExplode">
+			<description>This event is triggered when a vehicle explodes.</description>
+		</event>
+	</group>
+</events>

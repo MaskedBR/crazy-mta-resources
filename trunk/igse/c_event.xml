@@ -1,0 +1,324 @@
+<events>
+	<group name="Colshape">
+		<event name="onClientColShapeHit" >
+			<param name="element hitElement" />
+			<param name="bool matchingDimension" />
+			<description>This event triggers whenever an element (a player, a vehicle...) enters a collision shape.</description>
+		</event>
+		<event name="onClientColShapeLeave" >
+			<param name="element leaveElement" />
+			<param name="bool matchingDimension" />
+			<description>This event triggers whenever an element (a player, a vehicle...) leaves a collision shape.</description>
+		</event>
+	</group>
+	<group name="Element">
+		<event name="onClientElementDestroy" >
+			<description>This event is triggered when an element gets destroyed by destroyElement or when the creator resource is stopping. It is also triggered when a parent element of this element is destroyed.</description>
+		</event>
+		<event name="onClientElementColShapeHit" >
+			<param name="colshape theShape" />
+			<param name="bool matchingDimension" />
+			<description>This event is triggered when an element (like a player or vehicle) enters a collision shape.</description>
+		</event>
+		<event name="onClientElementColShapeLeave" >
+			<param name="colshape theShape" />
+			<param name="bool matchingDimension" />
+			<description>This event is triggered when an element (like a player or vehicle) leaves a collision shape.</description>
+		</event>
+		<event name="onClientElementDataChange" >
+			<param name="string dataName" />
+			<description>This event is triggered whenever an element's element data is changed.</description>
+		</event>
+		<event name="onClientElementStreamIn" >
+			<description>This event is triggered whenever a physical element is streamed in. This is triggered for all elements that are streamable, such as players, peds, vehicles, objects and markers. When this event is triggered, that element is guaranteed to be physically created as a GTA object.</description>
+		</event>
+		<event name="onClientElementStreamOut" >
+			<description>This event is triggered whenever a physical element is streamed out. This is triggered for all elements that are streamable, such as players, peds, vehicles, objects and markers when the local player is leaving the element. When this event is triggered, that element is no longer physical and is now virtualized by MTA.</description>
+		</event>
+	</group>
+	<group name="GUI">
+		<event name="onClientGUIClick" >
+			<param name="string button" />
+			<param name="string state" />
+			<param name="int absoluteX" />
+			<param name="int absoluteY" />
+			<description>This event triggers whenever an element (a player, a vehicle...) enters a collision shape.</description>
+		</event>
+		<event name="onClientGUIDoubleClick" >
+			<param name="string button" />
+			<param name="string state" />
+			<param name="int absoluteX" />
+			<param name="int absoluteY" />
+			<description>This event is fired when the user double clicks a GUI element.</description>
+		</event>
+		<event name="onClientGUIChanged" >
+			<param name="element theElement" />
+			<description>This event is fired when a memo or an editbox has changed (either by the user or by guiSetText).</description>
+		</event>
+		<event name="onClientGUIAccepted" >
+			<param name="element editBox" />
+			<description>This event is fired when enter is pressed on an editbox.</description>
+		</event>
+		<event name="onClientClick" >
+			<param name="string button" />
+			<param name="string state" />
+			<param name="int absoluteX" />
+			<param name="int absoluteY" />
+			<param name="int worldX" />
+			<param name="int worldY" />
+			<param name="int worldZ" />
+			<param name="element clickedWorld" />
+			<description>This event is fired when a GUI scrollbar is scrolled.</description>
+		</event>
+		<event name="onClientMouseEnter" >
+			<param name="int absoluteX" />
+			<param name="int absoluteY" />
+			<description>This event is fired when the user moves the mouse over a GUI element.</description>
+		</event>
+		<event name="onClientMouseLeave" >
+			<param name="int absoluteX" />
+			<param name="int absoluteY" />
+			<description>This event is fired when the user moves the mouse away from a GUI element.</description>
+		</event>
+		<event name="onClientMouseMove" >
+			<param name="int absoluteX" />
+			<param name="int absoluteY" />
+			<description>This event is triggered each time the user moves the mouse on top of a GUI element.</description>
+		</event>
+		<event name="onClientMouseWheel" >
+			<param name="float cursorX" />
+			<param name="float cursorY" />
+			<param name="int absoluteX" />
+			<param name="int absoluteY" />
+			<param name="float worldX" />
+			<param name="float worldY" />
+			<param name="float worldZ" />
+			<description>This event is called by the root element whenever the cursor is moved over the screen, by the player. It returns information about the world coordinates as well as the screen coordinates of where the player moved the cursor.</description>
+		</event>
+		<event name="onClientCursorMove" >
+			<param name="int upOrDown" />
+			<description>This event is triggered each time the user scrolls his mouse scroll on top of a GUI element.</description>
+		</event>
+		<event name="onClientGUIMove" >
+			<description>This event is triggered each time the user moves a GUI element.</description>
+		</event>
+		<event name="onClientGUISize" >
+			<description>This event is triggered each time the user moves a GUI element.</description>
+		</event>
+		<event name="onClientGUIMouseDown" >
+			<param name="string button" />
+			<param name="int absoluteX" />
+			<param name="int absoluteY" />
+			<description>This event is fired when the user clicks certain mouse button on a GUI element.</description>
+		</event>
+		<event name="onClientGUIMouseUp" >
+			<param name="string button" />
+			<param name="int absoluteX" />
+			<param name="int absoluteY" />
+			<description>This event is fired when the user releases his mouse button when on top of a GUI element.</description>
+		</event>
+		<event name="onClientGUITabSwitch" >
+			<description>This event is triggered each time the user switch from GUI tab.</description>
+		</event>
+	</group>
+	<group name="Marker">
+		<event name="onClientMarkerHit">
+			<param name="player hitPlayer" />
+			<param name="bool matchingDimension" />
+			<description>This event is triggered when a player enters the area of a marker created using createMarker.</description>
+		</event>
+		<event name="onClientMarkerLeave">
+			<param name="player leftPlayer" />
+			<param name="bool matchingDimension" />
+			<description>This event is triggered when a player leaves the area of a marker created using createMarker.</description>
+		</event>
+	</group>
+	<group name="Ped">
+		<event name="onClientPedWasted">
+			<param name="element killer" />
+			<param name="int weapon" />
+			<param name="int bodypart" />
+			<description>This event is triggered whenever a ped dies.</description>
+		</event>
+		<event name="onClientPedWasted" >
+			<param name="element killer" />
+			<param name="int weapon" />
+			<param name="int bodypart" />
+			<description>This event is triggered whenever a ped dies.</description>
+		</event>
+		<event name="onClientPedWeaponFire" >
+			<param name="int weapon" />
+			<param name="int ammo" />
+			<param name="int ammoInClip" />
+			<param name="float hitX" />
+			<param name="float hitY" />
+			<param name="float hitZ" />
+			<param name="element hitElement" />
+			<description>This event is called when ped shoots a weapon. This does not trigger for projectiles based, or melee weapons. Also note that this event is only triggered for peds nearby the local player's camera. This is due to elements far away being streamed out.</description>
+		</event>
+		<event name="onClientPedChoke" >
+			<param name="int weaponID" />
+			<param name="ped responsiblePed" />
+			<description>This event is fired when a ped chokes due to the effect of a weapon such as tear gas grenades, fire extinguishers and spray cans.</description>
+		</event>
+	</group>
+	<group name="Player">
+		<event name="onClientPlayerJoin" >
+			<description>This event is triggered when a player joins a server. It is triggered for all players other than the local player.</description>
+		</event>
+		<event name="onClientPlayerQuit" >
+			<param name="player leftPlayer" />
+			<description>This event is triggered when a remote player quits the game or leaves the server. It will not get triggered on the source player's client. notes: Quit reason string can be: - "Unknown" - "Quit" - "Kicked" - "Banned" - "Bad Connection" - "Timed out"</description>
+		</event>
+		<event name="onClientPlayerWeaponFire" >
+			<param name="int weapon" />
+			<param name="int ammo" />
+			<param name="int ammoInClip" />
+			<param name="float hitX" />
+			<param name="float hitY" />
+			<param name="float hitZ" />
+			<param name="element hitElement" />
+			<description>This event is called when player shoots a weapon. This does not trigger for projectiles based, or melee weapons. Also note that this event is only triggered for players nearby the local player's camera. This is due to elements far away being streamed out.</description>
+		</event>
+		<event name="onClientPlayerWeaponSwitch" >
+			<param name="int previousWeaponSlot" />
+			<param name="int currentWeaponSlot" />
+			<description>This event is triggered when a remote player quits the game or leaves the server. It will not get triggered on the source player's client. notes: Quit reason string can be: - "Unknown" - "Quit" - "Kicked" - "Banned" - "Bad Connection" - "Timed out"</description>
+		</event>
+		<event name="onClientPlayerTarget" >
+			<param name="element target" />
+			<description>This event is triggered whenever a player switches his weapon.</description>
+		</event>
+		<event name="onClientPlayerDamage" >
+			<param name="element attacker" />
+			<param name="int weapon" />
+			<param name="int bodypart" />
+			<param name="float loss" />
+			<description>This event is triggered whenever a player is damaged.</description>
+		</event>
+		<event name="onClientPlayerSpawn" >
+			<param name="team hisTeam" />
+			<description>This event is triggered when any player, including a remote player, spawns.</description>
+		</event>
+		<event name="onClientPlayerWasted" >
+			<param name="element killer" />
+			<param name="int weapon" />
+			<param name="int bodypart" />
+			<description>This event is triggered whenever a player, including those remote, dies.</description>
+		</event>
+		<event name="onClientPlayerVehicleEnter">
+			<param name="vehicle theVehicle" />
+			<param name="int seat" />
+			<description>This event is fired when a player enters a vehicle.</description>
+		</event>
+		<event name="onClientPlayerVehicleExit">
+			<param name="vehicle theVehicle" />
+			<param name="int seat" />
+			<description>This event is triggered when a player exits a vehicle.</description>
+		</event>
+		<event name="onClientPlayerChangeNick">
+			<param name="string oldNick" />
+			<param name="string newNick" />
+			<description>This event is triggered when a player changes his nickname.</description>
+		</event>
+		<event name="onClientPlayerStuntStart">
+			<param name="string stuntType" />
+			<description>This event is triggered whenever the local player starts doing a vehicle stunt.</description>
+		</event>
+		<event name="onClientPlayerStuntFinish">
+			<param name="string stuntType" />
+			<param name="int stuntTime" />
+			<param name="float stuntDistance" />
+			<description>This event is triggered whenever the local player finishes a vehicle stunt.</description>
+		</event>
+		<event name="onClientPlayerChoke" >
+			<param name="int weaponID" />
+			<param name="ped responsiblePed" />
+			<description>This event is fired when a player chokes due to the effect of a weapon such as tear gas grenades, fire extinguishers and spray cans.</description>
+		</event>
+		<event name="onClientPlayerRadioSwitch" >
+			<param name="int stationID" />
+			<description>This event is triggered whenever a players radio station is changed.</description>
+		</event>
+	</group>
+	<group name="Projectile">
+		<event name="onClientProjectileCreation">
+			<param name="element creator" />
+			<description>This event is triggered when a projectile is created.</description>
+		</event>
+		<event name="onClientProjectileDestruction">
+			<description>This event is triggered when a projectile is destroyed.</description>
+		</event>
+	</group>
+	<group name="Resources">
+		<event name="onClientResourceStart">
+			<param name="resource startedResource" />
+			<description>This event is triggered when a resource is started. Please note that this is not triggered the same side as the serverside variant onResourceStart. The event is triggered when any clientside resources are started. This means it is triggered when a clientside script is initiated after a download, which includes downloading after join.</description>
+		</event>
+		<event name="onClientResourceStop">
+			<param name="resource stoppedResource" />
+			<description>This event is triggered when a resource is stopped.</description>
+		</event>
+	</group>
+	<group name="Vehicle">
+		<event name="onClientVehicleRespawn">
+			<description>This event is triggered when a vehicle respawns.</description>
+		</event>
+		<event name="onClientVehicleEnter">
+			<param name="player thePlayer" />
+			<param name="int seat" />
+			<description>This event gets fired when a player enters a vehicle.</description>
+		</event>
+		<event name="onClientVehicleExit">
+			<param name="vehicle theVehicle" />
+			<param name="int seat" />
+			<description>This event gets fired when a player gets out of a vehicle.</description>
+		</event>
+		<event name="onClientVehicleStartEnter">
+			<param name="player thePlayer" />
+			<param name="int seat" />
+			<param name="int door" />
+			<description>This event is triggered when a player starts entering a vehicle. Once the entering animation completes, onClientVehicleEnter is triggered.</description>
+		</event>
+		<event name="onClientVehicleStartExit">
+			<param name="player thePlayer" />
+			<param name="int seat" />
+			<description>This event is triggered when a player starts exiting a vehicle. Once the exiting animation completes, onClientExitVehicle is triggered.</description>
+		</event>
+		<event name="onClientTrailerAttach">
+			<param name="vehicle towedBy" />
+			<description>This event is triggered by a trailer when it gets attached to a towing vehicle.</description>
+		</event>
+		<event name="onClientTrailerDetach">
+			<param name="vehicle towedBy" />
+			<description>This event is triggered when a trailer gets detached from its towing vehicle.</description>
+		</event>
+	</group>
+	<group name="Other">
+		<event name="onClientConsole">
+			<param name="string text" />
+			<description>This event is triggered when the local player enters text in the console. Note that, if you want to add custom console commands, it is easier to the addCommandHandler function.</description>
+		</event>
+		<event name="onClientPreRender">
+			<param name="float timeslice" />
+			<description>This event is triggered every time before GTA renders a new frame.</description>
+		</event>
+		<event name="onClientRender">
+			<description>This event is triggered every time GTA renders a new frame. It is useful for clientside operations that have to be applied repeatedly with very short time differences between them.</description>
+		</event>
+		<event name="onClientExplosion">
+			<param name="float x" />
+			<param name="float y" />
+			<param name="float z" />
+			<param name="int type" />
+			<description>This event is triggered every time an explosion is created on the current clients scene (inside the streamer)</description>
+		</event>
+		<event name="onClientChatMessage">
+			<param name="string text" />
+			<param name="int r" />
+			<param name="int g" />
+			<param name="int b" />
+			<description>This event is triggered when any text is output to chatbox, including MTA's hardcoded messages.</description>
+		</event>
+	</group>
+</events>

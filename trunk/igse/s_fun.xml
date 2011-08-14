@@ -1,0 +1,2703 @@
+<funcs>
+	<group name="Account functions">
+	 	<function name="addAccount" ret="account">
+	 		 	<param name="string name" type="required" />
+	 		 	<param name="string pass" type="required" />
+	 		 	<description>This function adds an account to the list of registered accounts of the current server.</description>
+	 	</function>
+	 	<function name="copyAccountData" ret="bool">
+	 		 	<param name="account theAccount" type="required" />
+	 		 	<param name="account fromAccount" type="required" />
+	 		 	<description>This function copies all of the data from one account to another.</description>
+	 	</function>
+	 	<function name="getAccount" ret="account">
+	 		 	<param name="string username" type="required" />
+	 		 	<param name="string password" type="optional" />
+	 		 	<description>This function returns an account for a specific user.</description>
+	 	</function>
+	 	<function name="getAccountData" ret="string">
+	 		 	<param name="account theAccount" type="required" />
+	 		 	<param name="string key" type="required" />
+	 		 	<description>This function retrieves a string that has been stored using setAccountData. Data stored as account data is persistent across user's sessions and maps, unless they are logged into a guest account.</description>
+	 	</function>
+	 	<function name="getAccountName" ret="string">
+	 		 	<param name="account theAccount" type="required" />
+	 		 	<description>This function retrieves the name of an account.</description>
+	 	</function>
+	 	<function name="getAccounts" ret="table">
+	 		 	<description>This function returns a table over all the accounts that exist in the server accounts.xml file.</description>
+	 	</function>
+	 	<function name="isGuestAccount" ret="bool">
+	 		 	<param name="account theAccount" type="required" />
+	 		 	<description>This function checks to see if an account is a guest account. A guest account is an account automatically created for a user when they join the server and deleted when they quit or login to another account. Data stored in a guest account is not stored after the player has left the server. As a consequence, this function will check if a player is logged in or not.</description>
+	 	</function>
+	 	<function name="logIn" ret="bool">
+	 		 	<param name="player thePlayer" type="required" />
+	 		 	<param name="account theAccount" type="required" />
+	 		 	<param name="string thePassword" type="required" />
+	 		 	<description>This functions logs the given player in to the given account. You need to provide the password needed to log into that account.</description>
+	 	</function>
+	 	<function name="logOut" ret="bool">
+	 		 	<param name="player thePlayer" type="required" />
+	 		 	<description>This function logs the given player out of his current account.</description>
+	 	</function>
+	 	<function name="removeAccount" ret="bool">
+	 		 	<param name="account theAccount" type="required" />
+	 		 	<description>This function is used to delete existing player accounts.</description>
+	 	</function>
+	 	<function name="setAccountData" ret="bool">
+	 		 	<param name="account theAccount" type="required" />
+	 		 	<param name="string key" type="required" />
+	 		 	<param name="string value" type="required" />
+	 		 	<description>This function sets a string to be stored in an account. This can then be retrieved using getAccountData. Data stored as account data is persistent across user's sessions and maps, unless they are logged into a guest account.</description>
+	 	</function>
+	 	<function name="setAccountPassword" ret="bool">
+	 		 	<param name="account theAccount" type="required" />
+	 		 	<param name="string password" type="required" />
+	 		 	<description>This function sets the password of the specified account.</description>
+	 	</function>
+	 	<function name="getAccountPlayer" ret="player">
+	 		 	<param name="account theAccount" type="required" />
+	 		 	<description>This function returns the player element that is currently using a specified account, i.e. is logged into it. Only one player can use an account at a time.</description>
+	 	</function>
+	</group>
+	<group name="ACL functions">
+	 	<function name="aclCreate" ret="acl">
+	 		 	<param name="string aclName" type="required" />
+	 		 	<description>This function creates an ACL entry in the Access Control List system with the specified name.</description>
+	 	</function>
+	 	<function name="aclCreateGroup" ret="aclgroup">
+	 		 	<param name="string groupName" type="required" />
+	 		 	<description>This function creates a group in the ACL. An ACL group can contain objects like players and resources. They specify who has access to the ACL's in this group.</description>
+	 	</function>
+	 	<function name="aclDestroy" ret="bool">
+	 		 	<param name="acl theACL" type="required" />
+	 		 	<description>This function destroys the ACL passed. The destroyed ACL will no longer be valid.</description>
+	 	</function>
+	 	<function name="aclDestroyGroup" ret="bool">
+	 		 	<param name="string aclGroupName" type="required" />
+	 		 	<description>This function destroys the given ACL group. The destroyed ACL group will no longer be valid.</description>
+	 	</function>
+	 	<function name="aclGet" ret="acl">
+	 		 	<param name="string aclName" type="required" />
+	 		 	<description>Get the ACL with the given name. If need to get most of the ACL's, you should consider using aclList to get a table of them all.</description>
+	 	</function>
+	 	<function name="aclGetGroup" ret="aclgroup">
+	 		 	<param name="string groupName" type="required" />
+	 		 	<description>This function is used to get the ACL group with the given name. If you need most of the groups you should consider using aclGroupList instead to get a table containing them all.</description>
+	 	</function>
+	 	<function name="aclGetName" ret="string">
+	 		 	<param name="acl theAcl" type="required" />
+	 		 	<description>Get the name of given ACL.</description>
+	 	</function>
+	 	<function name="aclGetRight" ret="bool">
+	 		 	<param name="acl theAcl" type="required" />
+	 		 	<param name="string rightName" type="required" />
+	 		 	<description>This function returns whether the access for the given right is set to true or false in the ACL.</description>
+	 	</function>
+	 	<function name="aclGroupList" ret="table">
+	 		 	<description>This function returns a table of all the ACL groups.</description>
+	 	</function>
+	 	<function name="aclGroupAddACL" ret="bool">
+	 		 	<param name="aclgroup theGroup" type="required" />
+	 		 	<param name="acl theACL" type="required" />
+	 		 	<description>This function adds the given ACL to the given ACL group. This makes the resources and players in the given ACL group have access to what's specified in the given ACL. The rights for something in the different ACL's in a group are OR-ed together, which means if one ACL gives access to something, this ACL group will have access to that.</description>
+	 	</function>
+	 	<function name="aclGroupAddObject" ret="bool">
+	 		 	<param name="aclgroup theGroup" type="required" />
+	 		 	<param name="string theObjectName" type="required" />
+	 		 	<description>This function adds an object to the given ACL group. An object can be a player's account, specified as:</description>
+	 	</function>
+	 	<function name="aclGroupGetName" ret="string">
+	 		 	<param name="aclGroup" type="required" />
+	 		 	<description>This function is used to get the name of the given ACL group.</description>
+	 	</function>
+	 	<function name="aclGroupListACL" ret="table of acl">
+	 		 	<param name="aclgroup theGroup" type="required" />
+	 		 	<description>This function returns a table over all the ACL's that exist in a given ACL group.</description>
+	 	</function>
+	 	<function name="aclGroupListObjects" ret="table of string">
+	 		 	<param name="aclgroup theGroup" type="required" />
+	 		 	<description>This function returns a table over all the objects that exist in a given ACL group. These are objects like players and resources.</description>
+	 	</function>
+	 	<function name="aclGroupRemoveACL" ret="bool">
+	 		 	<param name="aclgroup theGroup" type="required" />
+	 		 	<param name="acl theACL" type="required" />
+	 		 	<description>This function removes the given ACL from the given ACL group.</description>
+	 	</function>
+	 	<function name="aclGroupRemoveObject" ret="bool">
+	 		 	<param name="aclgroup theGroup" type="required" />
+	 		 	<param name="string theObjectString" type="required" />
+	 		 	<description>This function removes the given object (string) from the given ACL group. The object can be a resource or a player. See aclGroupAddObject for more details.</description>
+	 	</function>
+	 	<function name="aclList" ret="table">
+	 		 	<description>This function returns a list of all the ACLs.</description>
+	 	</function>
+	 	<function name="aclListRights" ret="table">
+	 		 	<param name="acl theACL" type="required" />
+	 		 	<description>This function returns a table of all the rights that a given ACL has.</description>
+	 	</function>
+	 	<function name="aclReload" ret="bool">
+	 		 	<description>This function reloads the ACL's and the ACL groups from the ACL XML file. All ACL and ACL group elements are invalid after a call to this and should not be used anymore.</description>
+	 	</function>
+	 	<function name="aclRemoveRight" ret="bool">
+	 		 	<param name="acl theAcl" type="required" />
+	 		 	<param name="string rightName" type="required" />
+	 		 	<description>This function removes the given right (string) from the given ACL.</description>
+	 	</function>
+	 	<function name="aclSave" ret="bool">
+	 		 	<description>This function saves the ACL from the memory back to the XML file. That must be done after changing the ACL so your changes are remembered for the next server restart. This does not need to be done after every change, but after you're done changing it.</description>
+	 	</function>
+	 	<function name="aclSetRight" ret="bool">
+	 		 	<param name="acl theAcl" type="required" />
+	 		 	<param name="string rightName" type="required" />
+	 		 	<param name="bool hasAccess" type="required" />
+	 		 	<description>This functions changes or adds the given right in the given ACL. The access can be true or false and specifies whether the ACL gives access to the right or not.</description>
+	 	</function>
+	 	<function name="hasObjectPermissionTo" ret="bool">
+	 		 	<param name="string / element theObject" type="required" />
+	 		 	<param name="string theAction" type="required" />
+	 		 	<param name="bool defaultPermission=true" type="optional" />
+	 		 	<description>This function returns whether or not the given object has access to perform the given action.</description>
+	 	</function>
+	 	<function name="isObjectInACLGroup" ret="bool">
+	 		 	<param name="string theObject" type="required" />
+	 		 	<param name="aclgroup theGroup" type="required" />
+	 		 	<description>This function is used to determine if an object is in a group.</description>
+	 	</function>
+	</group>
+	<group name="Admin functions">
+	 	<function name="banPlayer" ret="ban">
+	 		 	<param name="player bannedPlayer" type="required" />
+	 		 	<param name="bool IP=true" type="optional" />
+	 		 	<param name="bool Username=false" type="optional" />
+	 		 	<param name="bool Serial=false" type="optional" />
+	 		 	<param name="player responsiblePlayer=nil" type="optional" />
+	 		 	<param name="string reason=nil" type="optional" />
+	 		 	<param name="int seconds=0" type="optional" />
+	 		 	<description>This function will ban the specified player by either IP, serial or username</description>
+	 	</function>
+	 	<function name="kickPlayer" ret="bool">
+	 		 	<param name="player kickedPlayer" type="required" />
+	 		 	<param name="player responsiblePlayer" type="optional" />
+	 		 	<param name="string reason" type="optional" />
+	 		 	<description>This function will kick the specified player from the server.</description>
+	 	</function>
+	 	<function name="addBan" ret="ban">
+	 		 	<param name="string IP" type="optional" />
+	 		 	<param name="string Username" type="optional" />
+	 		 	<param name="string Serial" type="optional" />
+	 		 	<param name="player responsibleElement" type="optional" />
+	 		 	<param name="string reason" type="optional" />
+	 		 	<param name="int seconds=0" type="optional" />
+	 		 	<description>This function will add a ban for the specified IP/username/serial to the server.</description>
+	 	</function>
+	 	<function name="getBanAdmin" ret="string">
+	 		 	<param name="ban theBan" type="required" />
+	 		 	<description>This function will return the responsible admin (nickname of the admin) of the specified ban pointer.</description>
+	 	</function>
+	 	<function name="getBanIP" ret="string">
+	 		 	<param name="ban theBan" type="required" />
+	 		 	<description>This function will return the IP of the specified ban pointer.</description>
+	 	</function>
+	 	<function name="getBanReason" ret="string">
+	 		 	<param name="ban theBan" type="required" />
+	 		 	<description>This function will return the ban reason of the specified ban pointer.</description>
+	 	</function>
+	 	<function name="getBans" ret="table">
+	 		 	<description>This function will return a table over all the ban values in the server.</description>
+	 	</function>
+	 	<function name="getBanSerial" ret="string">
+	 		 	<param name="ban theBan" type="required" />
+	 		 	<description>This function will return the serial of the specified ban pointer.</description>
+	 	</function>
+	 	<function name="getBanTime" ret="int">
+	 		 	<param name="ban theBan" type="required" />
+	 		 	<description>This function will return the banning time of the specified ban pointer in seconds.</description>
+	 	</function>
+	 	<function name="getBanUsername" ret="string">
+	 		 	<param name="ban theBan" type="required" />
+	 		 	<description>This function will return the username of the specified ban pointer.</description>
+	 	</function>
+	 	<function name="getUnbanTime" ret="int">
+	 		 	<param name="ban theBan" type="required" />
+	 		 	<description>This function will return the unbanning time of the specified ban pointer in seconds.</description>
+	 	</function>
+	 	<function name="removeBan" ret="bool">
+	 		 	<param name="ban theBan" type="required" />
+	 		 	<param name="player responsibleElement" type="optional" />
+	 		 	<description>This function will remove a ban specified by the ban pointer.</description>
+	 	</function>
+	</group>
+	<group name="Audio functions">
+	 	<function name="playSoundFrontEnd" ret="bool">
+	 		 	<param name="player thePlayer" type="required" />
+	 		 	<param name="int sound" type="required" />
+	 		 	<description>This function plays a frontend sound for the specified player.</description>
+	 	</function>
+	</group>
+	<group name="Announcement functions">
+	 	<function name="getGameType" ret="string">
+	 		 	<description>This function retrieves the current gametype as set by setGameType. The game type is displayed in the server browser next to the server's name.</description>
+	 	</function>
+	 	<function name="getMapName" ret="string">
+	 		 	<description>This function retrieves the current mapname as set by setMapName.</description>
+	 	</function>
+	 	<function name="getRuleValue" ret="string">
+	 		 	<param name="string key" type="required" />
+	 		 	<description>This function gets a rule value. A rule value is a string that can be viewed by server browsers and used for filtering the server list.</description>
+	 	</function>
+	 	<function name="removeRuleValue" ret="bool">
+	 		 	<param name="string key" type="required" />
+	 		 	<description>This function removes a set rule value that can be viewed by server browsers.</description>
+	 	</function>
+	 	<function name="setGameType" ret="bool">
+	 		 	<param name="string gameType" type="required" />
+	 		 	<description>This function sets a string containing a name for the game type. This should be the game-mode that is active, for example "Capture The Flag" or "Deathmatch". This is then displayed in the server browser and external server browsers.</description>
+	 	</function>
+	 	<function name="setMapName" ret="bool">
+	 		 	<param name="string mapName" type="required" />
+	 		 	<description>This function is used to set a map name that will be visible in the server browser. In practice you should generally rely on the mapmanager to do this for you.</description>
+	 	</function>
+	 	<function name="setRuleValue" ret="bool">
+	 		 	<param name="string key" type="required" />
+	 		 	<param name="string value" type="required" />
+	 		 	<description>This function sets a rule value that can be viewed by server browsers.</description>
+	 	</function>
+	</group>
+	<group name="Blip functions">
+	 	<function name="createBlip" ret="blip">
+	 		 	<param name="float x" type="required" />
+	 		 	<param name="float y" type="required" />
+	 		 	<param name="float z" type="required" />
+	 		 	<param name="int icon=0" type="optional" />
+	 		 	<param name="int size=2" type="optional" />
+	 		 	<param name="int r=255" type="optional" />
+	 		 	<param name="int g=0" type="optional" />
+	 		 	<param name="int b=0" type="optional" />
+	 		 	<param name="int a=255" type="optional" />
+	 		 	<param name="int ordering=0 *" type="optional" />
+	 		 	<param name="float visibleDistance=99999.0" type="optional" />
+	 		 	<param name="visibleTo=getRootElement()" type="optional" />
+	 		 	<description>This function creates a blip element, which is displayed as an icon on the client's radar.</description>
+	 	</function>
+	 	<function name="createBlipAttachedTo" ret="blip">
+	 		 	<param name="element elementToAttachTo" type="required" />
+	 		 	<param name="int icon=0" type="optional" />
+	 		 	<param name="int size=2" type="optional" />
+	 		 	<param name="int r=255" type="optional" />
+	 		 	<param name="int g=0" type="optional" />
+	 		 	<param name="int b=0" type="optional" />
+	 		 	<param name="int a=255" type="optional" />
+	 		 	<param name="int ordering=0" type="optional" />
+	 		 	<param name="float visibleDistance=99999.0" type="optional" />
+	 		 	<param name="visibleTo=getRootElement()" type="optional" />
+	 		 	<description>This function creates a blip that is attached to an element. This blip is displayed as an icon on the client's radar and will 'follow' the element that it is attached to around.</description>
+	 	</function>
+	 	<function name="getBlipColor" ret="int, int, int, int">
+	 		 	<param name="blip theBlip" type="required" />
+	 		 	<description>This function will tell you what color a blip is. This color is only applicable to the default blip icon. All other icons will ignore this.</description>
+	 	</function>
+	 	<function name="getBlipIcon" ret="int">
+	 		 	<param name="blip theBlip" type="required" />
+	 		 	<description>This function returns the icon a blip currently has.</description>
+	 	</function>
+	 	<function name="getBlipSize" ret="int">
+	 		 	<param name="blip theBlip" type="required" />
+	 		 	<description>This function gets the size of a blip.</description>
+	 	</function>
+	 	<function name="setBlipColor" ret="bool">
+	 		 	<param name="blip theBlip" type="required" />
+	 		 	<param name="int red" type="required" />
+	 		 	<param name="int green" type="required" />
+	 		 	<param name="int blue" type="required" />
+	 		 	<param name="int alpha" type="required" />
+	 		 	<description>This function will let you change the color of a blip. This color is only applicable to the default blip icon. All other icons will ignore this.</description>
+	 	</function>
+	 	<function name="setBlipIcon" ret="bool">
+	 		 	<param name="blip theBlip" type="required" />
+	 		 	<param name="int icon" type="required" />
+	 		 	<description>This function sets the icon for an existing blip element.</description>
+	 	</function>
+	 	<function name="setBlipSize" ret="bool">
+	 		 	<param name="blip theBlip" type="required" />
+	 		 	<param name="int iconSize" type="required" />
+	 		 	<description>This function sets the size of a blip's icon.</description>
+	 	</function>
+	 	<function name="getBlipOrdering" ret="int">
+	 		 	<param name="blip theBlip" type="required" />
+	 		 	<description>This function gets the Z ordering value of a blip. The Z ordering determines if a blip appears on top of or below other blips. Blips with a higher Z ordering value appear on top of blips with a lower value. The default value for all blips is 0.</description>
+	 	</function>
+	 	<function name="setBlipOrdering" ret="bool">
+	 		 	<param name="blip theBlip" type="required" />
+	 		 	<param name="int ordering" type="required" />
+	 		 	<description>This function sets the Z ordering of a blip. It allows you to make a blip appear on top of or below other blips.</description>
+	 	</function>
+	</group>
+	<group name="Camera functions">
+	 	<function name="fadeCamera" ret="bool">
+	 		 	<param name="player thePlayer" type="required" />
+	 		 	<param name="bool fadeIn" type="required" />
+	 		 	<param name="float timeToFade=1.0" type="optional" />
+	 		 	<param name="int red=0" type="optional" />
+	 		 	<param name="int green=0" type="optional" />
+	 		 	<param name="int blue=0" type="optional" />
+	 		 	<description>This function will fade a player's camera to a color or back to normal over a specified time period. This will also affect the sound volume for the player (50% faded=50% volume, full fade=no sound). For clientside scripts you can perform 2 fade ins or fade outs in a row, but for serverside scripts you must use one then the other.</description>
+	 	</function>
+	 	<function name="getCameraTarget" ret="element">
+	 		 	<param name="player thePlayer" type="required" />
+	 		 	<description>This function returns an element that corresponds to the current target of the specified player's camera (i.e. what it is following).</description>
+	 	</function>
+	 	<function name="setCameraTarget" ret="bool">
+	 		 	<param name="player thePlayer" type="required" />
+	 		 	<param name="element target" type="required" />
+	 		 	<description>This function allows you to set a player's camera to follow other elements instead. Currently supported element types are:</description>
+	 	</function>
+	 	<function name="getCameraInterior" ret="int">
+	 		 	<param name="player thePlayer" type="required" />
+	 		 	<description>Returns the interior of the local camera (independent of the interior of the local player).</description>
+	 	</function>
+	 	<function name="getCameraMatrix" ret="float, float, float, float, float, float, float, float">
+	 		 	<param name="player thePlayer" type="required" />
+	 		 	<description>This function gets the position of the camera and the position of the point it is facing.</description>
+	 	</function>
+	 	<function name="setCameraInterior" ret="bool">
+	 		 	<param name="player thePlayer" type="required" />
+	 		 	<param name="int interior" type="required" />
+	 		 	<description>Sets the interior of the local camera. Only the interior of the camera is changed, the local player stays in the interior he was in.</description>
+	 	</function>
+	 	<function name="setCameraMatrix" ret="bool">
+	 		 	<param name="player thePlayer" type="required" />
+	 		 	<param name="float positionX" type="required" />
+	 		 	<param name="float positionY" type="required" />
+	 		 	<param name="float positionZ" type="required" />
+	 		 	<param name="float lookAtX" type="optional" />
+	 		 	<param name="float lookAtY" type="optional" />
+	 		 	<param name="float lookAtZ" type="optional" />
+	 		 	<param name="float roll=0" type="optional" />
+	 		 	<param name="float fov=70" type="optional" />
+	 		 	<description>This function sets the camera's position and direction. The first three arguments are the point at which the camera lies, the last three are the point the camera faces (or the point it "looks at").</description>
+	 	</function>
+	</group>
+	<group name="Collision shape functions">
+	 	<function name="createColCircle" ret="colshape">
+	 		 	<param name="float fX" type="required" />
+	 		 	<param name="float fY" type="required" />
+	 		 	<param name="float radius" type="required" />
+	 		 	<description>This function creates a collision circle. This is a shape that has a position and a radius and infinite height that you can use to detect a player's presence. Events will be triggered when a player enters or leaves it.</description>
+	 	</function>
+	 	<function name="createColCuboid" ret="colshape">
+	 		 	<param name="float fX" type="required" />
+	 		 	<param name="float fY" type="required" />
+	 		 	<param name="float fZ" type="required" />
+	 		 	<param name="float fWidth" type="required" />
+	 		 	<param name="float fDepth" type="required" />
+	 		 	<param name="float fHeight" type="required" />
+	 		 	<description>This function creates a collision cuboid. This is a shape that has a position, width, depth and height. See Wikipedia for a definition of a cuboid. The XYZ of the col starts at the southwest bottom corner of the shape.</description>
+	 	</function>
+	 	<function name="createColRectangle" ret="colshape">
+	 		 	<param name="float fX" type="required" />
+	 		 	<param name="float fY" type="required" />
+	 		 	<param name="float fWidth" type="required" />
+	 		 	<param name="float fDepth" type="required" />
+	 		 	<description>This function creates a collision rectangle. This is a shape that has a position and a width and a depth. See Rectangle for a definition of a rectangle. XY marks on the south west corner of the colshape.</description>
+	 	</function>
+	 	<function name="createColSphere" ret="colshape">
+	 		 	<param name="float fX" type="required" />
+	 		 	<param name="float fY" type="required" />
+	 		 	<param name="float fZ" type="required" />
+	 		 	<param name="float fRadius" type="required" />
+	 		 	<description>This function creates a collision sphere. This is a shape that has a position and a radius. See Wikipedia for a definition of a sphere.</description>
+	 	</function>
+	 	<function name="createColTube" ret="colshape">
+	 		 	<param name="float fX" type="required" />
+	 		 	<param name="float fY" type="required" />
+	 		 	<param name="float fZ" type="required" />
+	 		 	<param name="float fRadius" type="required" />
+	 		 	<param name="float fHeight" type="required" />
+	 		 	<description>This function creates a collision tube. This is a shape that has a position and a 2D (X/Y) radius and a height. See Tube for a definition of a tube. A tube is similar to a colcircle, except that it has a limited height, this means you can limit the distance above the position defined by (fX, fY, fZ) that the collision is detected.</description>
+	 	</function>
+	 	<function name="createColPolygon" ret="colshape">
+	 		 	<param name="float fX" type="required" />
+	 		 	<param name="float fY" type="required" />
+	 		 	<param name="float fX1" type="required" />
+	 		 	<param name="float fY1" type="required" />
+	 		 	<param name="float fX2" type="required" />
+	 		 	<param name="float fY2" type="required" />
+	 		 	<param name="float fX3" type="required" />
+	 		 	<param name="float fY3" type="required" />
+	 		 	<param name="..." type="required" />
+	 		 	<description>This function creates a collision polygon. See Wikipedia for a definition of a polygon. The first set of X Y of this shape is not part of the colshape bounds, so can set anywhere in the game world, however for performance, place it somewhere within the polygon. It should be noted this shape is 2D. There should be at least 3 bound points set.</description>
+	 	</function>
+	</group>
+	<group name="Clothes and body functions">
+	 	<function name="getBodyPartName" ret="string">
+	 		 	<param name="int bodyPartID" type="required" />
+	 		 	<description>This function is used to get the name of a body part on a player.</description>
+	 	</function>
+	 	<function name="getClothesByTypeIndex" ret="string, string">
+	 		 	<param name="int clothesType" type="required" />
+	 		 	<param name="int clothesIndex" type="required" />
+	 		 	<description>This function is used to get the texture and model of clothes by the clothes type and index.</description>
+	 	</function>
+	 	<function name="getClothesTypeName" ret="string">
+	 		 	<param name="int clothesType" type="required" />
+	 		 	<description>This function is used to get the name of a certain clothes type.</description>
+	 	</function>
+	 	<function name="getTypeIndexFromClothes" ret="int, int">
+	 		 	<param name="string clothesTexture" type="required" />
+	 		 	<param name="string clothesModel" type="required" />
+	 		 	<description>This function is used to get the clothes type and index from the texture and model.</description>
+	 	</function>
+	</group>
+	<group name="Cursor functions">
+	 	<function name="isCursorShowing" ret="bool">
+	 		 	<param name="player thePlayer" type="required" />
+	 		 	<description>This function is used to determine whether or not a player's cursor is showing.</description>
+	 	</function>
+	 	<function name="showCursor" ret="bool">
+	 		 	<param name="player thePlayer" type="required" />
+	 		 	<param name="bool show" type="required" />
+	 		 	<param name="bool toggleControls=true" type="optional" />
+	 		 	<description>This function is used to show or hide a player's cursor.</description>
+	 	</function>
+	</group>
+	<group name="Element functions">
+	 	<function name="clearElementVisibleTo" ret="bool">
+	 		 	<param name="element theElement" type="required" />
+	 		 	<description>This function clears any settings added by setElementVisibleTo and restores an element to its default visibility. This does not work with all entities - vehicles, players and objects are exempt. This is because these objects are required for accurate sync (they're physical objects). This function is particularily useful for changing the visibility of markers, radar blips and radar areas.</description>
+	 	</function>
+	 	<function name="cloneElement" ret="element">
+	 		 	<param name="element theElement" type="required" />
+	 		 	<param name="float xPos=0" type="optional" />
+	 		 	<param name="float yPos=0" type="optional" />
+	 		 	<param name="float zPos=0" type="optional" />
+	 		 	<param name="bool cloneChildren=false" type="optional" />
+	 		 	<description>This function clones (creates an exact copy of) an already existing element. The root node, and player elements, cannot be cloned. If a player element is a child of an element that is cloned, it will be skipped, along with the elements that exist as a child to the player element.</description>
+	 	</function>
+	 	<function name="createElement" ret="element">
+	 		 	<param name="string elementType" type="required" />
+	 		 	<param name="string elementID" type="optional" />
+	 		 	<description>This function is used to create a new dummy element in the element tree which do not necessarily represent an entity within the San Andreas world. A common use for this function is for creating custom elements, such as a Flag or a Base.</description>
+	 	</function>
+	 	<function name="destroyElement" ret="bool">
+	 		 	<param name="element elementToDestroy" type="required" />
+	 		 	<description>This function destroys an element and all elements withinn it in the hierarchy (its children, the children of those children etc). Player elements cannot be destroyed using this function. A player can only be removed from the hierarchy when they quit or are kicked. The root element also cannot be destroyed, however, passing the root as an argument will wipe all elements from the server, except for the players and clients, which will become direct descendants of the root node, and other elements that cannot be destroyed, such as resource root elements.</description>
+	 	</function>
+	 	<function name="getAllElementData" ret="table">
+	 		 	<param name="element theElement" type="required" />
+	 		 	<description>Returns a table of all element data of an element.</description>
+	 	</function>
+	 	<function name="getAttachedElements" ret="table">
+	 		 	<param name="element theElement" type="required" />
+	 		 	<description>This function returns a table of all the elements attached to the specified element</description>
+	 	</function>
+	 	<function name="getElementAlpha" ret="int">
+	 		 	<param name="element theElement" type="required" />
+	 		 	<description>This function returns the alpha(transparency) value for the specified element. This can be a player or a vehicle.</description>
+	 	</function>
+	 	<function name="getElementAttachedTo" ret="element">
+	 		 	<param name="element theElement" type="required" />
+	 		 	<description>This function determines the element that the specified element is attached to.</description>
+	 	</function>
+	 	<function name="getElementByID" ret="element">
+	 		 	<param name="string id" type="required" />
+	 		 	<description>This function returns an element from the specified ID. If more than one element with the same ID exists, only the first one in the order it appears in the XML tree will be returned by this function.</description>
+	 	</function>
+	 	<function name="getElementByIndex" ret="element">
+	 		 	<param name="string type" type="required" />
+	 		 	<param name="int index" type="required" />
+	 		 	<description>This function returns an element of the specified type with the specified index.</description>
+	 	</function>
+	 	<function name="getElementChild" ret="element">
+	 		 	<param name="element parent" type="required" />
+	 		 	<param name="int index" type="required" />
+	 		 	<description>This function returns one of the child elements of a given parent element. The child element is selected by its index (0 for the first child, 1 for the second and so on).</description>
+	 	</function>
+	 	<function name="getElementChildren" ret="table">
+	 		 	<param name="element parent" type="required" />
+	 		 	<description>This function is used to retrieve a list of the child elements of a given parent element.</description>
+	 	</function>
+	 	<function name="getElementChildrenCount" ret="int">
+	 		 	<param name="element parent" type="required" />
+	 		 	<description>This function returns the number of children an element has.</description>
+	 	</function>
+	 	<function name="getElementColShape" ret="colshape">
+	 		 	<param name="element theElement" type="required" />
+	 		 	<description>This function is used to get element's colshape.</description>
+	 	</function>
+	 	<function name="getElementData" ret="var">
+	 		 	<param name="element theElement" type="required" />
+	 		 	<param name="string key" type="required" />
+	 		 	<param name="inherit=true" type="optional" />
+	 		 	<description>This function retrieves element data attached to an element under a certain key.</description>
+	 	</function>
+	 	<function name="getElementDimension" ret="int">
+	 		 	<param name="element theElement" type="required" />
+	 		 	<description>This function allows you to retrieve the dimension of any element. The dimension determines what/who the element is visible to.</description>
+	 	</function>
+	 	<function name="getElementHealth" ret="float">
+	 		 	<param name="element theElement" type="required" />
+	 		 	<description>This function returns the current health for the specified element. This can be a player or a vehicle.</description>
+	 	</function>
+	 	<function name="getElementID" ret="string">
+	 		 	<param name="element theElement" type="required" />
+	 		 	<description>This function gets the ID of an element. This is the "id" attribute of the element and is a string, NOT a number like a model ID, weapons ID or similar.</description>
+	 	</function>
+	 	<function name="getElementInterior" ret="int">
+	 		 	<param name="element theElement" type="required" />
+	 		 	<description>This function allows you to retrieve the interior of any element. An interior is the current loaded place, 0 being outside.</description>
+	 	</function>
+	 	<function name="getElementParent" ret="element">
+	 		 	<param name="element theElement" type="required" />
+	 		 	<description>This function is used to determine the parent of an element.</description>
+	 	</function>
+	 	<function name="getElementPosition" ret="float, float, float">
+	 		 	<param name="element theElement" type="required" />
+	 		 	<description>The getElementPosition function allows you to retrieve the position coordinates of an element. This can be any real world element, including:</description>
+	 	</function>
+	 	<function name="getElementsByType" ret="table">
+	 		 	<param name="string type" type="required" />
+	 		 	<param name="element startat=getRootElement()" type="optional" />
+	 		 	<description>This function is used to retrieve a list of all elements of the specified type. This can be useful, as it disregards where in the element tree it is. It can be used with either the built in types (listed below) or with any custom type used in a .map file. For example, if there is an element of type "flag" (e.g. &lt;flag /&gt;) in the .map file, the using "flag" as the type argument would find it.</description>
+	 	</function>
+	 	<function name="getElementsWithinColShape" ret="table">
+	 		 	<param name="colshape shape" type="required" />
+	 		 	<param name="string elemType" type="optional" />
+	 		 	<description>This function is used to retrieve a list of all elements in a colshape, of the specified type.</description>
+	 	</function>
+	 	<function name="getElementType" ret="string">
+	 		 	<param name="element theElement" type="required" />
+	 		 	<description>This function is used to retrieve the type of an element.</description>
+	 	</function>
+	 	<function name="getElementVelocity" ret="float, float, float">
+	 		 	<param name="element theElement" type="required" />
+	 		 	<description>This function returns three floats containing the velocity (movement speeds) along the X, Y, and Z axis respectively. This means that velocity values can be positive and negative for each axis.</description>
+	 	</function>
+	 	<function name="getElementZoneName" ret="string">
+	 		 	<param name="element theElement" type="required" />
+	 		 	<param name="bool citiesonly=false" type="optional" />
+	 		 	<description>This function allows you to retrieve the zone name of an element (eg. Verdant Bluffs or Ocean Docks)</description>
+	 	</function>
+	 	<function name="getRootElement" ret="element">
+	 		 	<description>This function returns the root node of the element tree, called root. This node contains every other element: all resource root elements, players and remote clients. It is never destroyed and cannot be destroyed using destroyElement.</description>
+	 	</function>
+	 	<function name="isElement" ret="bool">
+	 		 	<param name="var theValue" type="required" />
+	 		 	<description>This function checks if a value is an element or not.</description>
+	 	</function>
+	 	<function name="isElementAttached" ret="bool">
+	 		 	<param name="element theElement" type="required" />
+	 		 	<description>This functions checks whether or not an element is attached to another element.</description>
+	 	</function>
+	 	<function name="isElementVisibleTo" ret="bool">
+	 		 	<param name="element theElement" type="required" />
+	 		 	<param name="element visibleTo" type="required" />
+	 		 	<description>This checks if an element is visible to a player. This does not check if the player can literally see the element, just that they are aware that it exists. Some so-called per-player elements are able to be visible only to some players, as such this checks if this is the case for a particular element/player combination.</description>
+	 	</function>
+	 	<function name="isElementWithinColShape" ret="bool">
+	 		 	<param name="element theElement" type="required" />
+	 		 	<param name="colshape theShape" type="required" />
+	 		 	<description>This function is used to determine if an element is within a collision shape.</description>
+	 	</function>
+	 	<function name="removeElementData" ret="bool">
+	 		 	<param name="element theElement" type="required" />
+	 		 	<param name="string key" type="required" />
+	 		 	<description>This function removes the element data with the given key for that element. The element data removal is synced with all the clients.</description>
+	 	</function>
+	 	<function name="setElementAlpha" ret="bool">
+	 		 	<param name="element theElement" type="required" />
+	 		 	<param name="int alpha" type="required" />
+	 		 	<description>This function sets the alpha(transparency) value for the specified element. This can be a player or a vehicle.</description>
+	 	</function>
+	 	<function name="setElementData" ret="bool">
+	 		 	<param name="element theElement" type="required" />
+	 		 	<param name="string key" type="required" />
+	 		 	<param name="bool synchronize" type="optional" />
+	 		 	<param name="var value" type="optional" />
+	 		 	<description>This function stores element data under a certain key, attached to an element. Element data set using this is then synced with all clients or the server (depending if used client-side or not). As such you should avoid passing data that is not able to be synced into this function (i.e. xmlnodes, acls, aclgroups etc.) Server-created elements are able to be synced.</description>
+	 	</function>
+	 	<function name="setElementDimension" ret="bool">
+	 		 	<param name="element theElement" type="required" />
+	 		 	<param name="int dimension" type="required" />
+	 		 	<description>This function allows you to set the dimension of any element. The dimension determines what/who the element is visible to.</description>
+	 	</function>
+	 	<function name="setElementHealth" ret="bool">
+	 		 	<param name="element theElement" type="required" />
+	 		 	<param name="float newHealth" type="required" />
+	 		 	<description>This function sets the health for the specified element. This can be a player or a vehicle.</description>
+	 	</function>
+	 	<function name="setElementID" ret="bool">
+	 		 	<param name="element theElement" type="required" />
+	 		 	<param name="string name" type="required" />
+	 		 	<description>This function sets the ID of an element to a string. This can be anything from an identifying number, to a name.</description>
+	 	</function>
+	 	<function name="setElementInterior" ret="bool">
+	 		 	<param name="element theElement" type="required" />
+	 		 	<param name="int interior" type="required" />
+	 		 	<param name="float x" type="optional" />
+	 		 	<param name="float y" type="optional" />
+	 		 	<param name="float z" type="optional" />
+	 		 	<description>This function allows you to set the interior of any element. An interior is the current loaded place, 0 being outside.</description>
+	 	</function>
+	 	<function name="setElementParent" ret="bool">
+	 		 	<param name="element theElement" type="required" />
+	 		 	<param name="element parent" type="required" />
+	 		 	<description>This function is used for setting an element as the parent of another element.</description>
+	 	</function>
+	 	<function name="setElementPosition" ret="bool">
+	 		 	<param name="element theElement" type="required" />
+	 		 	<param name="float x" type="required" />
+	 		 	<param name="float y" type="required" />
+	 		 	<param name="float z" type="required" />
+	 		 	<param name="bool warp=true" type="optional" />
+	 		 	<description>This function sets the position of an element to the specified coordinates.</description>
+	 	</function>
+	 	<function name="setElementVelocity" ret="bool">
+	 		 	<param name="element theElement" type="required" />
+	 		 	<param name="float speedX" type="required" />
+	 		 	<param name="float speedY" type="required" />
+	 		 	<param name="float speedZ" type="required" />
+	 		 	<description>This function sets the velocity (movement speeds) along each axis, for an element.</description>
+	 	</function>
+	 	<function name="setElementVisibleTo" ret="bool">
+	 		 	<param name="element theElement" type="required" />
+	 		 	<param name="element visibleTo" type="required" />
+	 		 	<param name="bool visible" type="required" />
+	 		 	<description>This function can change an element's visibility. This does not work with all entities - vehicles, players and objects are exempt. This is because these objects are required for accurate sync (they're physical objects). This function is particularily useful for changing the visibility of markers, radar blips and radar areas.</description>
+	 	</function>
+	 	<function name="attachElements" ret="bool">
+	 		 	<param name="element theElement" type="required" />
+	 		 	<param name="element theAttachToElement" type="required" />
+	 		 	<param name="float xPosOffset" type="optional" />
+	 		 	<param name="float yPosOffset" type="optional" />
+	 		 	<param name="float zPosOffset" type="optional" />
+	 		 	<param name="float xRotOffset" type="optional" />
+	 		 	<param name="float yRotOffset" type="optional" />
+	 		 	<param name="float zRotOffset" type="optional" />
+	 		 	<description>This function attaches one element to another, so that the first one follows the second whenever it moves.</description>
+	 	</function>
+	 	<function name="detachElements" ret="bool">
+	 		 	<param name="element theElement" type="required" />
+	 		 	<param name="element theAttachToElement" type="optional" />
+	 		 	<description>This function detaches attached elements from one another.</description>
+	 	</function>
+	 	<function name="getElementModel" ret="int">
+	 		 	<param name="element theElement" type="required" />
+	 		 	<description>Returns the model ID of a given element. This can be a player/ped skin, a pickup model, an object model or a vehicle model.</description>
+	 	</function>
+	 	<function name="getElementSyncer" ret="element">
+	 		 	<param name="element theElement" type="required" />
+	 		 	<description>This function gets the syncer of an element. The syncer is the player who is in control of the element.</description>
+	 	</function>
+	 	<function name="isElementInWater" ret="bool">
+	 		 	<param name="element theElement" type="required" />
+	 		 	<description>This function checks whether an element is submerged in water.</description>
+	 	</function>
+	 	<function name="setElementAttachedOffsets" ret="bool">
+	 		 	<param name="element theElement" type="required" />
+	 		 	<param name="float xPosOffset" type="optional" />
+	 		 	<param name="float yPosOffset" type="optional" />
+	 		 	<param name="float zPosOffset" type="optional" />
+	 		 	<param name="float xRotOffset" type="optional" />
+	 		 	<param name="float yRotOffset" type="optional" />
+	 		 	<param name="float zRotOffset" type="optional" />
+	 		 	<description>This function updates the offsets of an element that has been attached to another element using attachElements.</description>
+	 	</function>
+	 	<function name="setElementModel" ret="bool">
+	 		 	<param name="element theElement" type="required" />
+	 		 	<param name="int model" type="required" />
+	 		 	<description>Sets the model of a given element. This allows you to change the model of a player (or ped), a vehicle or an object.</description>
+	 	</function>
+	</group>
+	<group name="Event functions">
+	 	<function name="addEvent" ret="bool">
+	 		 	<param name="string eventName" type="required" />
+	 		 	<param name="bool allowRemoteTrigger=false" type="optional" />
+	 		 	<description>This function allows you to register a custom event. Custom events function exactly like the built-in events. See event system for more information on the event system.</description>
+	 	</function>
+	 	<function name="addEventHandler" ret="bool">
+	 		 	<param name="string eventName" type="required" />
+	 		 	<param name="element attachedTo" type="required" />
+	 		 	<param name="function handlerFunction" type="required" />
+	 		 	<param name="bool getPropagated=true" type="optional" />
+	 		 	<description>This function will add an event handler. An event handler is a function that will be called when the event it's attached to is triggered. See event system for more information on how the event system works.</description>
+	 	</function>
+	 	<function name="cancelEvent" ret="bool">
+	 		 	<param name="bool cancel" type="optional" />
+	 		 	<param name="string reason" type="optional" />
+	 		 	<description>This function is used to stop the automatic internal handling of events, for example this can be used to prevent an item being given to a player when they walk over a pickup, by canceling the onPickupUse event.</description>
+	 	</function>
+	 	<function name="getCancelReason" ret="string">
+	 		 	<description>Gets the reason for cancelling an event.</description>
+	 	</function>
+	 	<function name="removeEventHandler" ret="bool">
+	 		 	<param name="string eventName" type="required" />
+	 		 	<param name="element attachedTo" type="required" />
+	 		 	<param name="function functionVar" type="required" />
+	 		 	<description>This functions removes a handler function from an event, so that the function is not called anymore when the event is triggered. See event system for more information on how the event system works.</description>
+	 	</function>
+	 	<function name="triggerClientEvent" ret="bool">
+	 		 	<param name="element triggerFor=getRootElement()" type="optional" />
+	 		 	<param name="string name" type="optional" />
+	 		 	<param name="element theElement" type="optional" />
+	 		 	<param name="arguments..." type="optional" />
+	 		 	<description>This function triggers an event previously registered on a client. This is the primary means of passing information between the server and the client. Clients have a similar triggerServerEvent function that can do the reverse. You can treat this function as if it was an asynchronous function call, using triggerServerEvent to pass back any returned information if necessary.</description>
+	 	</function>
+	 	<function name="triggerEvent" ret="bool">
+	 		 	<param name="string eventName" type="required" />
+	 		 	<param name="element baseElement" type="required" />
+	 		 	<param name="var argument1" type="optional" />
+	 		 	<param name="..." type="optional" />
+	 		 	<description>This function will trigger a named event on a specific element in the element tree. See event system for more information on how the event system works.</description>
+	 	</function>
+	 	<function name="wasEventCancelled" ret="bool">
+	 		 	<description>This function checks whether or not the currently active event has been canceled. This is mainly useful for custom events created by scripts.</description>
+	 	</function>
+	</group>
+	<group name="Explosion functions">
+	 	<function name="createExplosion" ret="bool">
+	 		 	<param name="float x" type="required" />
+	 		 	<param name="float y" type="required" />
+	 		 	<param name="float z" type="required" />
+	 		 	<param name="int type" type="required" />
+	 		 	<param name="player creator=nil" type="optional" />
+	 		 	<description>Creates an explosion of a certain type at a specified point in the world.</description>
+	 	</function>
+	</group>
+	<group name="File functions">
+	 	<function name="fileClose" ret="bool">
+	 		 	<param name="file theFile" type="required" />
+	 		 	<description>Closes a file handle obtained by fileCreate or fileOpen.</description>
+	 	</function>
+	 	<function name="fileCreate" ret="file">
+	 		 	<param name="string filepath" type="required" />
+	 		 	<description>Creates a new file in a directory of a resource. If there already exists a file with the specified name, it is overwritten with an empty file.</description>
+	 	</function>
+	 	<function name="fileFlush" ret="bool">
+	 		 	<param name="file theFile" type="required" />
+	 		 	<description>Forces pending disk writes to be executed. fileWrite doesn't directly write to the hard disk but places the data in a temporary buffer; only when there is enough data in the buffer it is actually written to disk. Call this function if you need the data written right now without closing the file. This is useful for log files that might want to be read while the resource is still executing. fileFlush can be called after each log entry is written. Without this, the file may appear empty or outdated to the user.</description>
+	 	</function>
+	 	<function name="fileGetPos" ret="int">
+	 		 	<param name="file theFile" type="required" />
+	 		 	<description>Returns the current read/write position in the given file.</description>
+	 	</function>
+	 	<function name="fileGetSize" ret="int">
+	 		 	<param name="file theFile" type="required" />
+	 		 	<description>Returns the total size in bytes of the given file.</description>
+	 	</function>
+	 	<function name="fileIsEOF" ret="bool">
+	 		 	<param name="file theFile" type="required" />
+	 		 	<description>Checks if the file position is at the end of the file.</description>
+	 	</function>
+	 	<function name="fileOpen" ret="file">
+	 		 	<param name="string filepath" type="required" />
+	 		 	<param name="bool readonly=false" type="optional" />
+	 		 	<description>Opens an existing file for reading and writing.</description>
+	 	</function>
+	 	<function name="fileRead" ret="string">
+	 		 	<param name="file theFile" type="required" />
+	 		 	<param name="int count" type="required" />
+	 		 	<description>Reads the specified number of bytes from the given file starting at its current read/write position, and returns them as a string.</description>
+	 	</function>
+	 	<function name="fileSetPos" ret="int">
+	 		 	<param name="file theFile" type="required" />
+	 		 	<param name="int offset" type="required" />
+	 		 	<description>Sets the current read/write position in the file.</description>
+	 	</function>
+	 	<function name="fileWrite" ret="int">
+	 		 	<param name="file theFile" type="required" />
+	 		 	<param name="string string1" type="required" />
+	 		 	<param name="string string2" type="optional" />
+	 		 	<param name="string string3 ..." type="optional" />
+	 		 	<description>Writes one or more strings to a the given file, starting at the current read/write position. Advances the position over the number of bytes that were written.</description>
+	 	</function>
+	 	<function name="fileDelete" ret="bool">
+	 		 	<param name="string filepath" type="required" />
+	 		 	<description>Deletes the specified file.</description>
+	 	</function>
+	</group>
+	<group name="HTTP functions">
+	 	<function name="httpClear" ret="bool">
+	 		 	<description>This function removes all text from the current HTML output.</description>
+	 	</function>
+	 	<function name="httpRequestLogin" ret="bool">
+	 		 	<description>This function makes the user's browser show a 'basic authentication' login box. The result of the login is handled automatically by the server. If the user has not logged in satisfactorily, you should just call the httpRequestLogin function again. It is the script's responsibility to judge when the user is logged in satisfactorily - you can use the user variable can be used to check if the user has logged in with an account you are happy with.</description>
+	 	</function>
+	 	<function name="httpSetResponseCode" ret="bool">
+	 		 	<param name="int code" type="required" />
+	 		 	<description>This function sets the HTTP status code that will be sent for the current HTML page.</description>
+	 	</function>
+	 	<function name="httpSetResponseCookie" ret="bool">
+	 		 	<param name="string cookieName" type="required" />
+	 		 	<param name="string cookieValue" type="required" />
+	 		 	<description>This function sets the value for the specified HTTP cookie of the current HTML page.</description>
+	 	</function>
+	 	<function name="httpSetResponseHeader" ret="bool">
+	 		 	<param name="string headerName" type="required" />
+	 		 	<param name="string headerValue" type="required" />
+	 		 	<description>This function sets the value for the specified HTTP response header of the current HTML page.</description>
+	 	</function>
+	 	<function name="httpWrite" ret="bool">
+	 		 	<param name="string data" type="required" />
+	 		 	<param name="int length" type="optional" />
+	 		 	<description>This function adds text to the output of the current HTTP file of the HTTP interface. The function can only be used on parsed (i.e not marked as raw) HTTP pages. httpWrite can support outputing binary data, if you specify the length of the data you are outtputing. If you do this, you should ensure you set an accurate content-type using httpSetResponseHeader otherwise it may be displayed inconsistently by browsers.</description>
+	 	</function>
+	</group>
+	<group name="Input functions">
+	 	<function name="bindKey" ret="bool">
+	 		 	<param name="player thePlayer" type="required" />
+	 		 	<param name="string key" type="required" />
+	 		 	<param name="string keyState" type="required" />
+	 		 	<param name="function handlerFunction" type="required" />
+	 		 	<param name="var arguments" type="optional" />
+	 		 	<param name="..." type="optional" />
+	 		 	<description>Binds a player's key to a handler function or command, which will be called when the key is pressed.</description>
+	 	</function>
+	 	<function name="getControlState" ret="bool">
+	 		 	<param name="player thePlayer" type="required" />
+	 		 	<param name="string controlName" type="required" />
+	 		 	<description>This function will check if a player is pressing a particular control. Controls are those that affect GTA. If you wish to get the state of another key, use bindKey and a command function.</description>
+	 	</function>
+	 	<function name="getFunctionsBoundToKey" ret="string">
+	 		 	<param name="player thePlayer" type="required" />
+	 		 	<param name="string theKey" type="required" />
+	 		 	<description>Gets the functions bound to a key. To bind a function to a key use the bindKey function</description>
+	 	</function>
+	 	<function name="getKeyBoundToFunction" ret="string">
+	 		 	<param name="player thePlayer" type="required" />
+	 		 	<param name="function theFunction" type="required" />
+	 		 	<description>getKeyBoundToFunction allows retrieval of the first key bound to a function.</description>
+	 	</function>
+	 	<function name="isControlEnabled" ret="bool">
+	 		 	<param name="player thePlayer" type="required" />
+	 		 	<param name="string control" type="required" />
+	 		 	<description>Checks whether a GTA control is enabled or disabled for a certain player.</description>
+	 	</function>
+	 	<function name="isKeyBound" ret="bool">
+	 		 	<param name="player thePlayer" type="required" />
+	 		 	<param name="string key" type="required" />
+	 		 	<param name="string keyState" type="optional" />
+	 		 	<param name="function handler" type="optional" />
+	 		 	<description>This function can be used to find out if a key has already been bound.</description>
+	 	</function>
+	 	<function name="setControlState" ret="bool">
+	 		 	<param name="player thePlayer" type="required" />
+	 		 	<param name="string control" type="required" />
+	 		 	<param name="bool state" type="required" />
+	 		 	<description>Sets a state of a specified player's control, as if they pressed or released it.</description>
+	 	</function>
+	 	<function name="toggleAllControls" ret="bool">
+	 		 	<param name="player thePlayer" type="required" />
+	 		 	<param name="bool enabled" type="required" />
+	 		 	<param name="bool gtaControls=true" type="optional" />
+	 		 	<param name="bool mtaControls=true" type="optional" />
+	 		 	<description>Enables or disables the use of all GTA controls for a specified player.</description>
+	 	</function>
+	 	<function name="toggleControl" ret="bool">
+	 		 	<param name="player thePlayer" type="required" />
+	 		 	<param name="string control" type="required" />
+	 		 	<param name="bool enabled" type="required" />
+	 		 	<description>Enables or disables the use of a GTA control for a specific player.</description>
+	 	</function>
+	 	<function name="unbindKey" ret="bool">
+	 		 	<param name="player thePlayer" type="required" />
+	 		 	<param name="string key" type="required" />
+	 		 	<param name="string keyState" type="optional" />
+	 		 	<param name="function handler" type="optional" />
+	 		 	<description>Removes an existing key bind from the specified player.</description>
+	 	</function>
+	</group>
+	<group name="Map functions">
+	 	<function name="loadMapData" ret="element">
+	 		 	<param name="xmlnode node" type="required" />
+	 		 	<param name="element parent" type="required" />
+	 		 	<description>This function is intended to load data from a loaded XML file into the element tree. This could be used for loading an external map, or part of another map.</description>
+	 	</function>
+	 	<function name="resetMapInfo" ret="bool">
+	 		 	<param name="player thePlayer=getRootElement()" type="optional" />
+	 		 	<description>This function is used to reset the state of a player. It is intended to restore a player to his default state as if he had just joined the server, without any scripts affecting him.</description>
+	 	</function>
+	 	<function name="saveMapData" ret="bool">
+	 		 	<param name="xmlnode node" type="required" />
+	 		 	<param name="element baseElement" type="required" />
+	 		 	<param name="bool childrenOnly=false" type="optional" />
+	 		 	<description>This converts a set of elements in the element tree into XML. This is a format that can then be loaded as a map file. Each element represents a single XML node.</description>
+	 	</function>
+	</group>
+	<group name="Marker functions">
+	 	<function name="createMarker" ret="marker">
+	 		 	<param name="float x" type="required" />
+	 		 	<param name="float y" type="required" />
+	 		 	<param name="float z" type="required" />
+	 		 	<param name="string type" type="optional" />
+	 		 	<param name="int size" type="optional" />
+	 		 	<param name="int r" type="optional" />
+	 		 	<param name="int g" type="optional" />
+	 		 	<param name="int b" type="optional" />
+	 		 	<param name="int a" type="optional" />
+	 		 	<param name="visibleTo=getRootElement()" type="optional" />
+	 		 	<description>This function creates a marker. A marker is a 3D model in the world that can highlight a particular point or area, often used to instruct players where to go to perform actions such as entering buildings.</description>
+	 	</function>
+	 	<function name="getMarkerColor" ret="int, int, int, int">
+	 		 	<param name="marker theMarker" type="required" />
+	 		 	<description>This function returns the color and transparency for a marker element. Not all marker types support transparency.</description>
+	 	</function>
+	 	<function name="getMarkerCount" ret="int">
+	 		 	<description>Returns the number of markers that currently exist in the world.</description>
+	 	</function>
+	 	<function name="getMarkerIcon" ret="string">
+	 		 	<param name="marker theMarker" type="required" />
+	 		 	<description>This function returns the icon name for a marker.</description>
+	 	</function>
+	 	<function name="getMarkerSize" ret="float">
+	 		 	<param name="marker myMarker" type="required" />
+	 		 	<description>This function returns a float containing the size of the specified marker.</description>
+	 	</function>
+	 	<function name="getMarkerTarget" ret="float, float, float">
+	 		 	<param name="marker theMarker" type="required" />
+	 		 	<description>This function returns the position of the specified marker's target, the position it points to. This only works for checkpoint markers and ring markers. For checkpoints it returns the position the arrow is pointing to, for ring markers it returns the position the ring is facing. You can set this target with setMarkerTarget.</description>
+	 	</function>
+	 	<function name="getMarkerType" ret="string">
+	 		 	<param name="marker theMarker" type="required" />
+	 		 	<description>This function returns a marker's type.</description>
+	 	</function>
+	 	<function name="setMarkerColor" ret="bool">
+	 		 	<param name="marker theMarker" type="required" />
+	 		 	<param name="int r" type="required" />
+	 		 	<param name="int g" type="required" />
+	 		 	<param name="int b" type="required" />
+	 		 	<param name="int a" type="required" />
+	 		 	<description>This function sets the color of the specified marker by modifying the values for red, green and blue.</description>
+	 	</function>
+	 	<function name="setMarkerIcon" ret="bool">
+	 		 	<param name="marker theMarker" type="required" />
+	 		 	<param name="string icon" type="required" />
+	 		 	<description>This function allows changing the icon of a checkpoint marker.</description>
+	 	</function>
+	 	<function name="setMarkerSize" ret="bool">
+	 		 	<param name="marker theMarker" type="required" />
+	 		 	<param name="float size" type="required" />
+	 		 	<description>This function sets the size of the specified marker.</description>
+	 	</function>
+	 	<function name="setMarkerTarget" ret="bool">
+	 		 	<param name="marker theMarker" type="required" />
+	 		 	<param name="float x" type="required" />
+	 		 	<param name="float y" type="required" />
+	 		 	<param name="float z" type="required" />
+	 		 	<description>This function sets the 'target' for a marker. Only the checkpoint and ring marker types can have a target.</description>
+	 	</function>
+	 	<function name="setMarkerType" ret="bool">
+	 		 	<param name="marker theMarker" type="required" />
+	 		 	<param name="string markerType" type="required" />
+	 		 	<description>This function changes a marker's type. The type controls how the marker is displayed in the game. It's important that you use marker types that users are used to from the single player game. For example, checkpoints are used in races, rings are used for aircraft races, arrows are used for entering buildings etc.</description>
+	 	</function>
+	</group>
+	<group name="Module functions">
+	 	<function name="getLoadedModules" ret="table">
+	 		 	<description>This function returns all the currently loaded modules of the server.</description>
+	 	</function>
+	 	<function name="getModuleInfo" ret="table">
+	 		 	<param name="string moduleName" type="required" />
+	 		 	<description>This function returns information about the specified module.</description>
+	 	</function>
+	</group>
+	<group name="Object functions">
+	 	<function name="createObject" ret="object">
+	 		 	<param name="int modelid" type="required" />
+	 		 	<param name="float x" type="required" />
+	 		 	<param name="float y" type="required" />
+	 		 	<param name="float z" type="required" />
+	 		 	<param name="float rx" type="optional" />
+	 		 	<param name="float ry" type="optional" />
+	 		 	<param name="float rz" type="optional" />
+	 		 	<description>Creates an object in the GTA world.</description>
+	 	</function>
+	 	<function name="getObjectRotation" ret="float, float, float">
+	 		 	<param name="object theObject" type="required" />
+	 		 	<description>Object rotation can be retrieved from objects in mapfiles or objects that are created in scripts.</description>
+	 	</function>
+	 	<function name="moveObject" ret="bool">
+	 		 	<param name="object theObject" type="required" />
+	 		 	<param name="int time" type="required" />
+	 		 	<param name="float targetx" type="required" />
+	 		 	<param name="float targety" type="required" />
+	 		 	<param name="float targetz" type="required" />
+	 		 	<param name="float moverx" type="optional" />
+	 		 	<param name="float movery" type="optional" />
+	 		 	<param name="float moverz" type="optional" />
+	 		 	<description>This function will smoothly move an object from its current position to a specified rotation and position.</description>
+	 	</function>
+	 	<function name="setObjectRotation" ret="bool">
+	 		 	<param name="object theObject" type="required" />
+	 		 	<param name="float rotX" type="required" />
+	 		 	<param name="float rotY" type="required" />
+	 		 	<param name="float rotZ" type="required" />
+	 		 	<description>Allows you to change an object's rotation while playing a map. The object can be from the map file or created in a script.</description>
+	 	</function>
+	 	<function name="stopObject" ret="bool">
+	 		 	<param name="object theobject" type="required" />
+	 		 	<description>This will allow you to stop an object that is currently moving.</description>
+	 	</function>
+	</group>
+	<group name="Ped functions">
+	 	<function name="addPedClothes" ret="bool">
+	 		 	<param name="ped thePed" type="required" />
+	 		 	<param name="string clothesTexture" type="required" />
+	 		 	<param name="string clothesModel" type="required" />
+	 		 	<param name="int clothesType" type="required" />
+	 		 	<description>This function is used to set the current clothes of a certain type on a ped. It can only be used on peds with the CJ skin (id 0).</description>
+	 	</function>
+	 	<function name="createPed" ret="ped">
+	 		 	<param name="int modelid" type="required" />
+	 		 	<param name="float x" type="required" />
+	 		 	<param name="float y" type="required" />
+	 		 	<param name="float z" type="required" />
+	 		 	<description>Creates a Ped in the GTA world.</description>
+	 	</function>
+	 	<function name="doesPedHaveJetPack" ret="bool">
+	 		 	<param name="ped thePed" type="required" />
+	 		 	<description>Checks whether or not a ped currently has a jetpack.</description>
+	 	</function>
+	 	<function name="getPedAnimation" ret="string, string">
+	 		 	<param name="ped thePed" type="required" />
+	 		 	<description>Gets the animation of a player or ped that was set using setPedAnimation.</description>
+	 	</function>
+	 	<function name="getPedArmor" ret="float">
+	 		 	<param name="ped thePed" type="required" />
+	 		 	<description>This function returns the current armor of the specified ped.</description>
+	 	</function>
+	 	<function name="getPedClothes" ret="string, string">
+	 		 	<param name="ped thePed" type="required" />
+	 		 	<param name="int clothesType" type="required" />
+	 		 	<description>This function is used to get the current clothes texture and model of a certain type on a ped.</description>
+	 	</function>
+	 	<function name="getPedContactElement" ret="element">
+	 		 	<param name="ped thePed" type="required" />
+	 		 	<description>This function detects the element a ped is standing on. This can be a vehicle or an object.</description>
+	 	</function>
+	 	<function name="getPedFightingStyle" ret="int">
+	 		 	<param name="ped thePed" type="required" />
+	 		 	<description>Retrieves the fighting style a player/ped is currently using.</description>
+	 	</function>
+	 	<function name="getPedGravity" ret="float">
+	 		 	<param name="ped thePed" type="required" />
+	 		 	<description>This function returns the current gravity for the specified ped. The default gravity is 0.008.</description>
+	 	</function>
+	 	<function name="getPedOccupiedVehicle" ret="vehicle">
+	 		 	<param name="ped thePed" type="required" />
+	 		 	<description>This function gets the vehicle that the ped is currently in, if any.</description>
+	 	</function>
+	 	<function name="getPedOccupiedVehicleSeat" ret="int">
+	 		 	<param name="ped thePed" type="required" />
+	 		 	<description>This function gets the seat that a specific ped is sitting in in a vehicle.</description>
+	 	</function>
+	 	<function name="getPedRotation" ret="float">
+	 		 	<param name="ped thePed" type="required" />
+	 		 	<description>Gets the rotation of a ped.</description>
+	 	</function>
+	 	<function name="getPedSkin" ret="int">
+	 		 	<param name="ped thePed" type="required" />
+	 		 	<description>This function returns the specified ped's skin.</description>
+	 	</function>
+	 	<function name="getPedStat" ret="float">
+	 		 	<param name="ped thePed" type="required" />
+	 		 	<param name="int stat" type="required" />
+	 		 	<description>This function returns the value of the specified statistic of a specific ped.</description>
+	 	</function>
+	 	<function name="getPedTarget" ret="element">
+	 		 	<param name="ped thePed" type="required" />
+	 		 	<description>This function is used to get the element a ped is currently targeting.</description>
+	 	</function>
+	 	<function name="getPedWeaponSlot" ret="int">
+	 		 	<param name="ped thePed" type="required" />
+	 		 	<description>This function gets a ped's selected weapon slot.</description>
+	 	</function>
+	 	<function name="givePedJetPack" ret="bool">
+	 		 	<param name="ped thePed" type="required" />
+	 		 	<description>This function is used to give a ped a jetpack.</description>
+	 	</function>
+	 	<function name="isPedChoking" ret="bool">
+	 		 	<param name="ped thePed" type="required" />
+	 		 	<description>This function checks if the specified ped is choking (coughing) or not. This happens as a result of weapons that produce smoke - smoke grenades, fire extinguisher and the spray can.</description>
+	 	</function>
+	 	<function name="isPedDead" ret="bool">
+	 		 	<param name="ped thePed" type="required" />
+	 		 	<description>This function checks if the specified ped is dead or not.</description>
+	 	</function>
+	 	<function name="isPedDoingGangDriveby" ret="bool">
+	 		 	<param name="ped thePed" type="required" />
+	 		 	<description>This function checks if the ped is in the driveby state.</description>
+	 	</function>
+	 	<function name="isPedDucked" ret="bool">
+	 		 	<param name="ped thePed" type="required" />
+	 		 	<description>This function checks if the specified ped is ducked (crouched) or not.</description>
+	 	</function>
+	 	<function name="isPedHeadless" ret="bool">
+	 		 	<param name="ped thePed" type="required" />
+	 		 	<description>With this function, you can check if a ped has a head or not.</description>
+	 	</function>
+	 	<function name="isPedInVehicle" ret="bool">
+	 		 	<param name="ped thePed" type="required" />
+	 		 	<description>Checks whether or not a given ped is currently in a vehicle.</description>
+	 	</function>
+	 	<function name="isPedInWater" ret="bool">
+	 		 	<param name="ped thePed" type="required" />
+	 		 	<description>Checks whether or not a ped is currently in water.</description>
+	 	</function>
+	 	<function name="isPedOnFire" ret="bool">
+	 		 	<param name="ped thePed" type="required" />
+	 		 	<description>This function checks if the specified ped is on fire or not.</description>
+	 	</function>
+	 	<function name="isPedOnGround" ret="bool">
+	 		 	<param name="ped thePed" type="required" />
+	 		 	<description>This function is used to determine whether or not a ped is on the ground. This is for on-foot usage only.</description>
+	 	</function>
+	 	<function name="killPed" ret="bool">
+	 		 	<param name="ped thePed" type="required" />
+	 		 	<param name="ped theKiller=nil" type="optional" />
+	 		 	<param name="int weapon=255" type="optional" />
+	 		 	<param name="int bodyPart=255" type="optional" />
+	 		 	<param name="bool stealth" type="optional" />
+	 		 	<description>This function kills the specified ped.</description>
+	 	</function>
+		<function name="reloadPedWeapon" ret="bool">
+	 		 	<param name="ped thePed" type="required" />
+				<description>This function makes a pedestrian reload their weapon.</description>
+		</function>
+	 	<function name="removePedClothes" ret="bool">
+	 		 	<param name="ped thePed" type="required" />
+	 		 	<param name="int clothesType" type="required" />
+	 		 	<param name="string clothesTexture" type="optional" />
+	 		 	<param name="string clothesModel" type="optional" />
+	 		 	<description>This function is used to remove the current clothes of a certain type on a ped. It will remove them if the clothesTexture and clothesModel aren't specified, or if they match the current clothes on that slot.</description>
+	 	</function>
+	 	<function name="removePedFromVehicle" ret="bool">
+	 		 	<param name="ped thePed" type="required" />
+	 		 	<description>This function removes a ped from a vehicle immediately. This works for drivers and passengers. Note that this removes the ped from the vehicle and puts him in the exact position where the command was initiated.</description>
+	 	</function>
+	 	<function name="removePedJetPack" ret="bool">
+	 		 	<param name="ped thePed" type="required" />
+	 		 	<description>This function is used to remove a ped's jetpack.</description>
+	 	</function>
+	 	<function name="setPedAnimation" ret="bool">
+	 		 	<param name="ped thePed" type="required" />
+	 		 	<param name="string block=nil" type="optional" />
+	 		 	<param name="string anim=nil" type="optional" />
+	 		 	<param name="int time=-1" type="optional" />
+	 		 	<param name="bool loop=true" type="optional" />
+	 		 	<param name="bool updatePosition=true" type="optional" />
+	 		 	<param name="bool interruptable=true" type="optional" />
+	 		 	<description>Sets the current animation of a player or ped. Not specifying the type of animation will automatically cancel the current one.</description>
+	 	</function>
+	 	<function name="setPedArmor" ret="bool">
+	 		 	<param name="ped thePed" type="required" />
+	 		 	<param name="float armor" type="required" />
+	 		 	<description>This function allows you to set the armor value of a ped.</description>
+	 	</function>
+	 	<function name="setPedChoking" ret="bool">
+	 		 	<param name="ped thePed" type="required" />
+	 		 	<param name="bool choking" type="required" />
+	 		 	<description>This function can be used to force the ped to do the choking animation (teargas etc...) until he respawns or toggled off using this function. The animation can not be cancelled by a player it's applied to, and he will not loose health.</description>
+	 	</function>
+	 	<function name="setPedDoingGangDriveby" ret="bool">
+	 		 	<param name="ped thePed" type="required" />
+	 		 	<param name="bool state" type="required" />
+	 		 	<description>This function sets the driveby state of a ped.</description>
+	 	</function>
+	 	<function name="setPedFightingStyle" ret="bool">
+	 		 	<param name="ped thePed" type="required" />
+	 		 	<param name="int style" type="required" />
+	 		 	<description>Changes a ped's fighting style. Most styles only change the 'special attack' which is done using the Aim and Enter keys.</description>
+	 	</function>
+	 	<function name="setPedGravity" ret="bool">
+	 		 	<param name="ped thePed" type="required" />
+	 		 	<param name="float gravity" type="required" />
+	 		 	<description>This function sets the gravity level of a ped.</description>
+	 	</function>
+	 	<function name="setPedHeadless" ret="bool">
+	 		 	<param name="ped thePed" type="required" />
+	 		 	<param name="bool headState" type="required" />
+	 		 	<description>With this function, you can set if a ped has a head or not.</description>
+	 	</function>
+	 	<function name="setPedOnFire" ret="bool">
+	 		 	<param name="ped thePed" type="required" />
+	 		 	<param name="bool isOnFire" type="required" />
+	 		 	<description>This function can be used to set a ped on fire or extinguish a fire on it.</description>
+	 	</function>
+	 	<function name="setPedRotation" ret="bool">
+	 		 	<param name="ped thePed" type="required" />
+	 		 	<param name="float rotation" type="required" />
+	 		 	<description>This function allows you to set the current rotation of the specified ped.</description>
+	 	</function>
+	 	<function name="setPedSkin" ret="bool">
+	 		 	<param name="ped thePed" type="required" />
+	 		 	<param name="int skinID" type="required" />
+	 		 	<description>This function changes the skin of a ped.</description>
+	 	</function>
+	 	<function name="setPedStat" ret="bool">
+	 		 	<param name="ped thePed" type="required" />
+	 		 	<param name="int stat" type="required" />
+	 		 	<param name="float value" type="required" />
+	 		 	<description>This function allows you to set the value of a specific statistic for a ped. Visual stats (FAT and BODY_MUSCLE) can only be used on the CJ skin, they have no effect on other skins.</description>
+	 	</function>
+	 	<function name="setPedWeaponSlot" ret="bool">
+	 		 	<param name="ped thePed" type="required" />
+	 		 	<param name="int weaponSlot" type="required" />
+	 		 	<description>This function changes the selected weapon slot of a ped.</description>
+	 	</function>
+	 	<function name="warpPedIntoVehicle" ret="bool">
+	 		 	<param name="ped thePed" type="required" />
+	 		 	<param name="vehicle theVehicle" type="required" />
+	 		 	<param name="int seat=0" type="optional" />
+	 		 	<description>This function is used to warp or force a ped into a vehicle. There are no animations involved when this happens.</description>
+	 	</function>
+	</group>
+	<group name="Pickup functions">
+	 	<function name="createPickup" ret="pickup">
+	 		 	<param name="float x" type="required" />
+	 		 	<param name="float y" type="required" />
+	 		 	<param name="float z" type="required" />
+	 		 	<param name="int type" type="required" />
+	 		 	<param name="int amount/weapon/model" type="required" />
+	 		 	<param name="int respawnTime=30000" type="optional" />
+	 		 	<param name="int ammo=50" type="optional" />
+	 		 	<description>This function creates a pickup element, which is placed in the GTA world and can be picked up to retrieve a health, armour or a weapon.</description>
+	 	</function>
+	 	<function name="getPickupAmmo" ret="int">
+	 		 	<param name="pickup thePickup" type="required" />
+	 		 	<description>This function retrieves the amount of ammo in a weapon pickup.</description>
+	 	</function>
+	 	<function name="getPickupAmount" ret="int">
+	 		 	<param name="pickup thePickup" type="required" />
+	 		 	<description>This function retrieves the amount of health or armor given from a pickup.</description>
+	 	</function>
+	 	<function name="getPickupType" ret="int">
+	 		 	<param name="pickup thePickup" type="required" />
+	 		 	<description>This function retrieves the type of a pickup, either a health, armour or weapon pickup.</description>
+	 	</function>
+	 	<function name="getPickupWeapon" ret="int">
+	 		 	<param name="pickup thePickup" type="required" />
+	 		 	<description>This function retrieves the weapon ID of a weapon pickup.</description>
+	 	</function>
+	 	<function name="setPickupType" ret="bool">
+	 		 	<param name="pickup thePickup" type="required" />
+	 		 	<param name="int type" type="required" />
+	 		 	<param name="int amount/weapon" type="required" />
+	 		 	<param name="int ammo" type="optional" />
+	 		 	<description>This function allows changing the type of a pickup to a Weapon, Armour or Health pickup, and allows you to set the health points or the weapon and ammo that the pickup will give.</description>
+	 	</function>
+	 	<function name="getPickupRespawnInterval" ret="int">
+	 		 	<param name="pickup thePickup" type="required" />
+	 		 	<description>Returns the time it takes before a pickup respawns after a player picked it up. The time is specified in milliseconds.</description>
+	 	</function>
+	 	<function name="isPickupSpawned" ret="bool">
+	 		 	<param name="pickup thePickup" type="required" />
+	 		 	<description>This function checks if a pickup is currently spawned (is visible and can be picked up) or not (a player picked it up recently).</description>
+	 	</function>
+	 	<function name="setPickupRespawnInterval" ret="bool">
+	 		 	<param name="pickup thePickup" type="required" />
+	 		 	<param name="int ms" type="required" />
+	 		 	<description>Sets the time it takes for a pickup to respawn after a player picked it up.</description>
+	 	</function>
+	 	<function name="usePickup" ret="bool">
+	 		 	<param name="pickup thePickup" type="required" />
+	 		 	<param name="player thePlayer" type="required" />
+	 		 	<description>This function is used to simulate the player using a pickup</description>
+	 	</function>
+	</group>
+	<group name="Player functions">
+	 	<function name="canPlayerUseFunction" ret="bool">
+	 		 	<param name="player thePlayer" type="required" />
+	 		 	<param name="string functionName" type="required" />
+	 		 	<description>This function can be used to check if the player can use a function, based on their current access level. Access levels for functions are stored in the server's config file. Use this if you want to prevent a player using a function unless they are logged in with enough rights.</description>
+	 	</function>
+	 	<function name="forcePlayerMap" ret="bool">
+	 		 	<param name="player thePlayer" type="required" />
+	 		 	<param name="bool forceOn" type="required" />
+	 		 	<description>This function is used to forcefully show a player's radar map.</description>
+	 	</function>
+	 	<function name="getAlivePlayers" ret="table">
+	 		 	<description>This function returns a table of all the alive players on the server. Opposite function of getDeadPlayers.</description>
+	 	</function>
+	 	<function name="getDeadPlayers" ret="table">
+	 		 	<description>This function returns a table of all currently dead players on the server.</description>
+	 	</function>
+	 	<function name="getPlayerAmmoInClip" ret="int">
+	 		 	<param name="player thePlayer" type="required" />
+	 		 	<description>This function returns an integer that contains the ammo in a specified player's weapon. See Weapon Info</description>
+	 	</function>
+	 	<function name="getPlayerBlurLevel" ret="int">
+	 		 	<param name="player thePlayer" type="required" />
+	 		 	<description>This function allows you to check the current blur level of a specified player.</description>
+	 	</function>
+	 	<function name="getPlayerCount" ret="int">
+	 		 	<description>This function returns the number of players currently connected to the server.</description>
+	 	</function>
+	 	<function name="getPlayerFromName" ret="player">
+	 		 	<param name="string playerName" type="required" />
+	 		 	<description>This function returns a player element for the player with the name passed to the function.</description>
+	 	</function>
+	 	<function name="getPlayerMoney" ret="int">
+	 		 	<param name="player thePlayer" type="required" />
+	 		 	<description>Returns the amount of money a player currently has.</description>
+	 	</function>
+	 	<function name="getPlayerNametagColor" ret="int, int, int">
+	 		 	<param name="player thePlayer" type="required" />
+	 		 	<description>This function gets the current color of a player's name tag as RGB values. These are in the range 0-255.</description>
+	 	</function>
+	 	<function name="getPlayerNametagText" ret="string">
+	 		 	<param name="player thePlayer" type="required" />
+	 		 	<description>This will allow you to retrieve the name tag a player is currently using.</description>
+	 	</function>
+	 	<function name="getPlayerPing" ret="int">
+	 		 	<param name="player thePlayer" type="required" />
+	 		 	<description>This function returns the ping of a specified player. The ping is the number of milliseconds that data takes to travel from the player's client to the server or vice versa.</description>
+	 	</function>
+	 	<function name="getPlayerTeam" ret="team">
+	 		 	<param name="player thePlayer" type="required" />
+	 		 	<description>This function gets the current team a player is on.</description>
+	 	</function>
+	 	<function name="getPlayerTotalAmmo" ret="int">
+	 		 	<param name="player thePlayer" type="required" />
+	 		 	<description>This function returns an integer that contains the total ammo in a specified player's weapon. See Weapon Info</description>
+	 	</function>
+	 	<function name="getPlayerWantedLevel" ret="int">
+	 		 	<param name="player thePlayer" type="required" />
+	 		 	<description>This function gets a player's current wanted level. The wanted level is indicated by the amount of stars a player has on the GTA HUD.</description>
+	 	</function>
+	 	<function name="getPlayerWeapon" ret="int">
+	 		 	<param name="player thePlayer" type="required" />
+	 		 	<description>This function tells you which weapon type is in the player's current slot (clientside, you can optionally specify a slot other than the current one). See Weapon Info</description>
+	 	</function>
+	 	<function name="getRandomPlayer" ret="player">
+	 		 	<description>This function returns a random player.</description>
+	 	</function>
+	 	<function name="givePlayerMoney" ret="bool">
+	 		 	<param name="player thePlayer" type="required" />
+	 		 	<param name="int amount" type="required" />
+	 		 	<description>This function adds money to a player's current money amount. To set absolute values, setPlayerMoney can be used.</description>
+	 	</function>
+	 	<function name="getPlayerWeapon" ret="int">
+	 		 	<param name="player thePlayer" type="required" />
+	 		 	<description>This function tells you which weapon type is in the player's current slot (clientside, you can optionally specify a slot other than the current one). See Weapon Info</description>
+	 	</function>
+	 	<function name="getRandomPlayer" ret="player">
+	 		 	<description>This function returns a random player.</description>
+	 	</function>
+	 	<function name="givePlayerMoney" ret="bool">
+	 		 	<param name="player thePlayer" type="required" />
+	 		 	<param name="int amount" type="required" />
+	 		 	<description>This function adds money to a player's current money amount. To set absolute values, setPlayerMoney can be used.</description>
+	 	</function>
+	 	<function name="isPlayerMapForced" ret="bool">
+	 		 	<param name="player thePlayer" type="required" />
+	 		 	<description>This function checks if the specified player's radar map has been forced on or not.</description>
+	 	</function>
+	 	<function name="isPlayerMuted" ret="bool">
+	 		 	<param name="player thePlayer" type="required" />
+	 		 	<description>Use this function to check if a player has been muted.</description>
+	 	</function>
+	 	<function name="isPlayerNametagShowing" ret="bool">
+	 		 	<param name="player thePlayer" type="required" />
+	 		 	<description>This function will allow you to determine if a player's name tag is currently showing.</description>
+	 	</function>
+	 	<function name="setPlayerBlurLevel" ret="bool">
+	 		 	<param name="player thePlayer" type="required" />
+	 		 	<param name="int level" type="required" />
+	 		 	<description>Sets the motion blur level on the clients screen. Accepts a value between 0 and 255.</description>
+	 	</function>
+	 	<function name="setPlayerMoney" ret="bool">
+	 		 	<param name="player thePlayer" type="required" />
+	 		 	<param name="int amount" type="required" />
+	 		 	<description>Sets a player's money to a certain value, regardless of current player money. It should be noted that setting negative values does not work and in fact gives the player large amounts of money.</description>
+	 	</function>
+	 	<function name="setPlayerMuted" ret="bool">
+	 		 	<param name="player thePlayer" type="required" />
+	 		 	<param name="bool state" type="required" />
+	 		 	<description>Use this function to mute or unmute the player.</description>
+	 	</function>
+	 	<function name="setPlayerNametagColor" ret="bool">
+	 		 	<param name="player thePlayer" type="required" />
+	 		 	<param name="int r" type="required" />
+	 		 	<param name="int g" type="required" />
+	 		 	<param name="int b" type="required" />
+	 		 	<description>This allows you to change the RGB color mixture in the name tags of players.</description>
+	 	</function>
+	 	<function name="setPlayerNametagShowing" ret="bool">
+	 		 	<param name="player thePlayer" type="required" />
+	 		 	<param name="bool showing" type="required" />
+	 		 	<description>Use this to define whether the player's name tag is visible or invisible.</description>
+	 	</function>
+	 	<function name="setPlayerNametagText" ret="bool">
+	 		 	<param name="player thePlayer" type="required" />
+	 		 	<param name="string text" type="required" />
+	 		 	<description>This will change the text of a player's nickname in the world to something besides the nickname he chose. This will not change the player's actual nickname, it only changes the visible aspect inside the world (you will see his original nickname in the scoreboard and will refer to his original name in scripts).</description>
+	 	</function>
+	 	<function name="setPlayerTeam" ret="bool">
+	 		 	<param name="player thePlayer" type="required" />
+	 		 	<param name="team theTeam" type="required" />
+	 		 	<description>This function adds a player to an existing team. The player will automatically be removed from his current team if he's on one.</description>
+	 	</function>
+	 	<function name="setPlayerWantedLevel" ret="bool">
+	 		 	<param name="player thePlayer" type="required" />
+	 		 	<param name="int stars" type="required" />
+	 		 	<description>This function is used to set a player's wanted level. The wanted level is indicated by the amount of stars a player has on the GTA HUD.</description>
+	 	</function>
+	 	<function name="showPlayerHudComponent" ret="bool">
+	 		 	<param name="player thePlayer" type="required" />
+	 		 	<param name="string component" type="required" />
+	 		 	<param name="bool show" type="required" />
+	 		 	<description>This function will show or hide a part of the player's HUD.</description>
+	 	</function>
+	 	<function name="spawnPlayer" ret="bool">
+	 		 	<param name="player thePlayer" type="required" />
+	 		 	<param name="float x" type="required" />
+	 		 	<param name="float y" type="required" />
+	 		 	<param name="float z" type="required" />
+	 		 	<param name="int rotation=0" type="optional" />
+	 		 	<param name="int skinID=0" type="optional" />
+	 		 	<param name="int interior=0" type="optional" />
+	 		 	<param name="int dimension=0" type="optional" />
+	 		 	<param name="team theTeam=nil" type="optional" />
+	 		 	<description>This function spawns the player at an arbitary point on the map.</description>
+	 	</function>
+	 	<function name="takePlayerMoney" ret="bool">
+	 		 	<param name="player thePlayer" type="required" />
+	 		 	<param name="int amount" type="required" />
+	 		 	<description>This function subtracts money from a player's current money amount.</description>
+	 	</function>
+	 	<function name="getPlayerAccount" ret="account">
+	 		 	<param name="player thePlayer" type="required" />
+	 		 	<description>This function returns the specified player's account object.</description>
+	 	</function>
+	 	<function name="getPlayerIP" ret="string">
+	 		 	<param name="player thePlayer" type="required" />
+	 		 	<description>This function returns a string containing the IP address of the player.</description>
+	 	</function>
+	 	<function name="getPlayerName" ret="string">
+	 		 	<param name="player thePlayer" type="required" />
+	 		 	<description>This function returns a string containing the name of the specified player.</description>
+	 	</function>
+	 	<function name="redirectPlayer" ret="bool">
+	 		 	<param name="player thePlayer" type="required" />
+	 		 	<param name="string serverIP" type="required" />
+	 		 	<param name="int serverPort" type="required" />
+	 		 	<param name="string serverPassword" type="optional" />
+	 		 	<description>This function redirects the player to a specified server.</description>
+	 	</function>
+	 	<function name="setPlayerName" ret="bool">
+	 		 	<param name="player thePlayer" type="required" />
+	 		 	<param name="string newName" type="required" />
+	 		 	<description>This function changes the specified player's name.</description>
+	 	</function>
+	</group>
+	<group name="Radar area functions">
+	 	<function name="createRadarArea" ret="radararea">
+	 		 	<param name="float centerX" type="required" />
+	 		 	<param name="float centerY" type="required" />
+	 		 	<param name="float sizeX" type="required" />
+	 		 	<param name="float sizeY" type="required" />
+	 		 	<param name="int r=255" type="optional" />
+	 		 	<param name="int g=0" type="optional" />
+	 		 	<param name="int b=0" type="optional" />
+	 		 	<param name="int a=255" type="optional" />
+	 		 	<param name="element visibleTo=getRootElement()" type="optional" />
+	 		 	<description>This function can be used to create custom radar areas on the radar.</description>
+	 	</function>
+	 	<function name="getRadarAreaColor" ret="int, int, int, int">
+	 		 	<param name="radararea theRadararea" type="required" />
+	 		 	<description>This function can be used to retrieve the current color of a radar area.</description>
+	 	</function>
+	 	<function name="getRadarAreaSize" ret="float, float">
+	 		 	<param name="radararea theRadararea" type="required" />
+	 		 	<description>This function is used for getting the X and Y size of an existing radar area.</description>
+	 	</function>
+	 	<function name="isInsideRadarArea" ret="bool">
+	 		 	<param name="radararea theArea" type="required" />
+	 		 	<param name="float posX" type="required" />
+	 		 	<param name="float posY" type="required" />
+	 		 	<description>This function checks if a 2D position is inside a radararea or not.</description>
+	 	</function>
+	 	<function name="isRadarAreaFlashing" ret="bool">
+	 		 	<param name="radararea theRadararea" type="required" />
+	 		 	<description>This function allows detection of whether a radar area is flashing or not.</description>
+	 	</function>
+	 	<function name="setRadarAreaColor" ret="bool">
+	 		 	<param name="radararea theRadarArea" type="required" />
+	 		 	<param name="int r" type="required" />
+	 		 	<param name="int g" type="required" />
+	 		 	<param name="int b" type="required" />
+	 		 	<param name="int a" type="required" />
+	 		 	<description>Sets the color of an existing radar area.</description>
+	 	</function>
+	 	<function name="setRadarAreaFlashing" ret="bool">
+	 		 	<param name="radararea theRadarArea" type="required" />
+	 		 	<param name="bool flash" type="required" />
+	 		 	<description>This function makes an existing radar area flash in transparency.</description>
+	 	</function>
+	 	<function name="setRadarAreaSize" ret="bool">
+	 		 	<param name="radararea theRadararea" type="required" />
+	 		 	<param name="float x" type="required" />
+	 		 	<param name="float y" type="required" />
+	 		 	<description>This function changes the size of an existing radar area.</description>
+	 	</function>
+	</group>
+	<group name="Resource functions">
+	 	<function name="addResourceConfig" ret="xmlnode">
+	 		 	<param name="string filepath" type="required" />
+	 		 	<param name="string filetype=server" type="optional" />
+	 		 	<description>This function adds a new empty config file to an existing resource.</description>
+	 	</function>
+	 	<function name="addResourceMap" ret="xmlnode">
+	 		 	<param name="string filepath" type="required" />
+	 		 	<param name="int dimension=0" type="optional" />
+	 		 	<description>This function adds a new empty mapfile to an existing resource.</description>
+	 	</function>
+	 	<function name="call" ret="var...">
+	 		 	<param name="resource theResource" type="required" />
+	 		 	<param name="string theFunction" type="required" />
+	 		 	<param name="arguments..." type="optional" />
+	 		 	<description>This function is used to call a function from another resource (which must be running).</description>
+	 	</function>
+	 	<function name="callRemote" ret="bool">
+	 		 	<param name="string host" type="required" />
+	 		 	<param name="string resourceName" type="required" />
+	 		 	<param name="string functionName" type="required" />
+	 		 	<param name="callback callbackFunction" type="required" />
+	 		 	<param name="arguments..." type="optional" />
+	 		 	<description>This function allows you to call functions that have been exported with HTTP access by other MTA servers. The calls are asynchronous so you do not get an immediate result from the call. You can also use this function to access any standard web page by specifying the URL.</description>
+	 	</function>
+	 	<function name="copyResource" ret="bool">
+	 		 	<param name="resource theResource" type="required" />
+	 		 	<param name="string newResourceName" type="required" />
+	 		 	<description>This function copies a specified resource with a new name.</description>
+	 	</function>
+	 	<function name="createResource" ret="resource">
+	 		 	<param name="string resourceName" type="required" />
+	 		 	<description>This function creates an empty resource.</description>
+	 	</function>
+	 	<function name="getResourceConfig" ret="xmlnode">
+	 		 	<param name="string filepath" type="optional" />
+	 		 	<description>This function is used to return the root node of a configuration file. Config files must be predefined in a resource's meta file. An alternative way to load XML files is to use xmlLoadFile.</description>
+	 	</function>
+	 	<function name="getResourceDynamicElementRoot" ret="element">
+	 		 	<param name="resource theResource" type="required" />
+	 		 	<description>This function retrieves the dynamic element root of a specified resource.</description>
+	 	</function>
+	 	<function name="getResourceExportedFunctions" ret="table">
+	 		 	<param name="resource res" type="required" />
+	 		 	<description>Returns a table containing the names of the functions that a resource exports.</description>
+	 	</function>
+	 	<function name="getResourceFromName" ret="resource">
+	 		 	<param name="string resourceName" type="required" />
+	 		 	<description>This function is used to retrieve a resource from its name. A resource's name is the same as its folder or file archive name on the server (without the extension).</description>
+	 	</function>
+	 	<function name="getResourceInfo" ret="string">
+	 		 	<param name="resource theResource" type="required" />
+	 		 	<param name="string attribute" type="required" />
+	 		 	<description>This function retrieves the value of any attribute in a resource info tag.</description>
+	 	</function>
+	 	<function name="getResourceLastStartTime" ret="int">
+	 		 	<param name="resource theResource" type="required" />
+	 		 	<description>Used to check the last starting time and date of a function</description>
+	 	</function>
+	 	<function name="getResourceLoadFailureReason" ret="string">
+	 		 	<param name="resource theResource" type="required" />
+	 		 	<description>This function retrieves the reason why a resource failed to start.</description>
+	 	</function>
+	 	<function name="getResourceLoadTime" ret="int">
+	 		 	<param name="resource res" type="required" />
+	 		 	<description>Gets the date and time at which a resource was last loaded in the server.</description>
+	 	</function>
+	 	<function name="getResourceMapRootElement" ret="element">
+	 		 	<param name="resource theResource" type="required" />
+	 		 	<param name="string mapName" type="required" />
+	 		 	<description>This function retrieves the root element of a certain map in a specified resource.</description>
+	 	</function>
+	 	<function name="getResourceName" ret="string">
+	 		 	<param name="resource res" type="required" />
+	 		 	<description>This function gets the name of the specified resource.</description>
+	 	</function>
+	 	<function name="getResourceRootElement" ret="element">
+	 		 	<param name="resource theResource=getThisResource()" type="optional" />
+	 		 	<description>This function retrieves a resource's root element. The resource's root element is the element in the element tree which is the parent of all elements that belong to a particular resource (except for elements specifically created elsewhere). You can attach event handlers to this element to easily capture events that originate from your resource (and global events that originate from the root element).</description>
+	 	</function>
+	 	<function name="getResources" ret="table">
+	 		 	<description>This function retrieves a table of all the resources that exist on the server.</description>
+	 	</function>
+	 	<function name="getResourceState" ret="string">
+	 		 	<param name="resource theResource" type="required" />
+	 		 	<description>This function returns the state of a given resource</description>
+	 	</function>
+	 	<function name="getThisResource" ret="resource">
+	 		 	<description>This function retrieves the resource from which the function call was made.</description>
+	 	</function>
+	 	<function name="removeResourceDefaultSetting" ret="bool">
+	 		 	<param name="resource theResource" type="required" />
+	 		 	<param name="string settingName" type="required" />
+	 		 	<description>This function is used to remove a default setting from specified resource.</description>
+	 	</function>
+	 	<function name="removeResourceFile" ret="bool">
+	 		 	<param name="resource theResource" type="required" />
+	 		 	<param name="string fileName" type="required" />
+	 		 	<description>This function removes a file from the resource.</description>
+	 	</function>
+	 	<function name="restartResource" ret="bool">
+	 		 	<param name="resource theResource" type="required" />
+	 		 	<description>This function restarts a running resource. Restarting will destroy all the elements that the resource has created (as stopping the resource does).</description>
+	 	</function>
+	 	<function name="setResourceDefaultSetting" ret="bool">
+	 		 	<param name="resource theResource" type="required" />
+	 		 	<param name="string settingName" type="required" />
+	 		 	<param name="string/int/float settingValue" type="required" />
+	 		 	<description>This function is used to set a default setting for a specified resource.</description>
+	 	</function>
+	 	<function name="startResource" ret="bool">
+	 		 	<param name="resource resourceToStart" type="required" />
+	 		 	<param name="bool persistent=false" type="optional" />
+	 		 	<param name="bool startIncludedResources=true" type="optional" />
+	 		 	<param name="bool loadServerConfigs=true" type="optional" />
+	 		 	<param name="bool loadMaps=true" type="optional" />
+	 		 	<param name="bool loadServerScripts=true" type="optional" />
+	 		 	<param name="bool loadHTML=true" type="optional" />
+	 		 	<param name="bool loadClientConfigs=true" type="optional" />
+	 		 	<param name="bool loadClientScripts=true" type="optional" />
+	 		 	<param name="bool loadFiles=true" type="optional" />
+	 		 	<description>This function starts a resource either persistently or as a dependency of the current resource. If you start the resource persistently, the resource will run until stopped either using stopResource or by the server admin. A resource started as a dependency will stop when your resource stops, if no other resources have it as a depdendency. This is the same effect as using an include in your meta.xml file.</description>
+	 	</function>
+	 	<function name="stopResource" ret="bool">
+	 		 	<param name="resource theResource" type="required" />
+	 		 	<description>This function stops a running resource.</description>
+	 	</function>
+	 	<function name="setResourceInfo" ret="bool">
+	 		 	<param name="resource theResource" type="required" />
+	 		 	<param name="string attribute" type="required" />
+	 		 	<param name="string value" type="required" />
+	 		 	<description>This function sets the value of any attribute in a resource info tag.</description>
+	 	</function>
+	</group>
+	<group name="Serial functions">
+	 	<function name="getPlayerSerial" ret="string">
+	 		 	<param name="player thePlayer" type="required" />
+	 		 	<description>This function returns the serial for a specified player.</description>
+	 	</function>
+	 	<function name="getPlayerUserName" ret="string">
+	 		 	<param name="player thePlayer" type="required" />
+	 		 	<description>This function returns the community.mtasa.com (or mtabeta.com) account of the specified user.</description>
+	 	</function>
+	</group>
+	<group name="Server functions">
+	 	<function name="addCommandHandler" ret="bool">
+	 		 	<param name="string commandName" type="required" />
+	 		 	<param name="function handlerFunction" type="required" />
+	 		 	<param name="bool restricted=false" type="optional" />
+	 		 	<param name="bool caseSensitive=true" type="optional" />
+	 		 	<description>This function will attach a scripting function (handler) to a console command, so that whenever a player or administrator uses the command the function is called.</description>
+	 	</function>
+	 	<function name="executeCommandHandler" ret="bool">
+	 		 	<param name="string commandName" type="required" />
+	 		 	<param name="player thePlayer" type="required" />
+	 		 	<param name="string args" type="optional" />
+	 		 	<description>This function will call all the attached functions of an existing console command, for a specified player.</description>
+	 	</function>
+	 	<function name="fromJSON" ret="var">
+	 		 	<param name="string json" type="required" />
+	 		 	<description>This function parses a JSON formatted string into variables. You can use toJSON to encode variables into a JSON string that can be read by this function.</description>
+	 	</function>
+	 	<function name="getMaxPlayers" ret="int">
+	 		 	<description>This function returns the maximum number of player slots on the server.</description>
+	 	</function>
+	 	<function name="getServerName" ret="string">
+	 		 	<description>This function retrieves the server's name.</description>
+	 	</function>
+	 	<function name="getServerPassword" ret="string">
+	 		 	<description>This function returns the current password required to join the server.</description>
+	 	</function>
+	 	<function name="getServerPort" ret="int">
+	 		 	<description>This function retrieves the server's port.</description>
+	 	</function>
+	 	<function name="outputChatBox" ret="bool">
+	 		 	<param name="string text" type="required" />
+	 		 	<param name="element visibleTo=getRootElement()" type="optional" />
+	 		 	<param name="int r=255" type="optional" />
+	 		 	<param name="int g=255" type="optional" />
+	 		 	<param name="int b=255" type="optional" />
+	 		 	<param name="bool colorCoded=false" type="optional" />
+	 		 	<description>This outputs the specified text string to the chatbox. It can be specified as a message to certain player(s) or all players. It can optionally allow you to embed color changes into the string by setting the colorCoded boolean to true.</description>
+	 	</function>
+	 	<function name="outputConsole" ret="bool">
+	 		 	<param name="string text" type="required" />
+	 		 	<param name="element visibleTo=getRootElement()" type="optional" />
+	 		 	<description>This outputs the specified text string to the console window (accessed with F8 or ~ key). It can be specified as a message to certain player(s) or all players.</description>
+	 	</function>
+	 	<function name="outputDebugString" ret="bool">
+	 		 	<param name="string text" type="required" />
+	 		 	<param name="int level=3" type="optional" />
+	 		 	<param name="int red=255" type="optional" />
+	 		 	<param name="int green=255" type="optional" />
+	 		 	<param name="int blue=255" type="optional" />
+	 		 	<description>This function outputs scripting debug messages, which can be read by enabling the debug textbox. The debug display level can then be set so that info or warning messages get filtered out.</description>
+	 	</function>
+	 	<function name="outputServerLog" ret="bool">
+	 		 	<param name="string text" type="required" />
+	 		 	<description>This outputs a line of text to the server's log. This could be useful for debugging.</description>
+	 	</function>
+	 	<function name="removeCommandHandler" ret="bool">
+	 		 	<param name="string commandName" type="required" />
+	 		 	<param name="function handler" type="optional" />
+	 		 	<description>This function removes a command handler, that is one that has been added using addCommandHandler. This function can only remove command handlers that were added by the resource that it is called in.</description>
+	 	</function>
+	 	<function name="setServerPassword" ret="bool">
+	 		 	<param name="string thePassword" type="required" />
+	 		 	<description>This function changes the password required to join the server to the given string.</description>
+	 	</function>
+	 	<function name="showChat" ret="bool">
+	 		 	<param name="player thePlayer" type="required" />
+	 		 	<param name="bool show" type="required" />
+	 		 	<description>This function is used to show or hide the player's chat.</description>
+	 	</function>
+	 	<function name="toJSON" ret="string">
+	 		 	<param name="var arguments ..." type="required" />
+	 		 	<description>This function converts one or more variables into a JSON encoded string. You can use this to store the data and then load it again using fromJSON.</description>
+	 	</function>
+	 	<function name="getFPSLimit" ret="int">
+	 		 	<description>This function retrieves the maximum FPS (Frames per second) that players on the server can run their game at.</description>
+	 	</function>
+	 	<function name="getVersion" ret="table">
+	 		 	<description>This function gives you various version information about MTA and the operating system.</description>
+	 	</function>
+	 	<function name="isGlitchEnabled" ret="bool">
+	 		 	<param name="string glitchName" type="required" />
+	 		 	<description>This function retrieves whether San Andreas game glitches are enabled or not, set by using setGlitchEnabled</description>
+	 	</function>
+	 	<function name="setFPSLimit" ret="bool">
+	 		 	<param name="int fpsLimit" type="required" />
+	 		 	<description>This function sets the maximum FPS (Frames per second) that players on the server can run their game at.</description>
+	 	</function>
+	 	<function name="setGlitchEnabled" ret="bool">
+	 		 	<param name="string glitchName" type="required" />
+	 		 	<param name="bool enable" type="required" />
+	 		 	<description>This function enables or disables glitches that are found in the original Single Player game that can be used to gain an advantage in multiplayer.</description>
+	 	</function>
+	 	<function name="shutdown" ret="bool">
+	 		 	<param name="string reason" type="required" />
+	 		 	<description>This function shuts down the server.</description>
+	 	</function>
+	</group>
+	<group name="Settings registry functions">
+	 	<function name="get" ret="var">
+	 		 	<param name="string settingName" type="required" />
+	 		 	<description>This function gets a setting's value, or a group of settings' values, from the settings registry.</description>
+	 	</function>
+	 	<function name="set" ret="bool">
+	 		 	<param name="string settingName" type="required" />
+	 		 	<param name="var value" type="required" />
+	 		 	<description>This function is used to save arbitrary data under a certain name on the settings registry.</description>
+	 	</function>
+	</group>
+	<group name="SQL functions">
+	 	<function name="executeSQLCreateTable" ret="bool">
+	 		 	<param name="string tableName" type="required" />
+		 	<param name="string definition" type="required" />
+	 		 	<description>This function creates a table in the database. It doesn't do anything when the table already exists. You can use this function in the loading or initialisation step of your script to ensure all the necessary tables that you use actually exist.</description>
+	 	</function>
+	 	<function name="executeSQLDelete" ret="bool">
+	 		 	<param name="string tableName" type="required" />
+	 		 	<param name="string conditions" type="required" />
+	 		 	<description>This function deletes any rows (from the database) that meet the specified conditions in the specified table.</description>
+	 	</function>
+	 	<function name="executeSQLDropTable" ret="bool">
+	 		 	<param name="string tableName" type="required" />
+	 		 	<description>This function drops a table in the registry. This function doesn't do anything when the table doesn't exist.</description>
+	 	</function>
+	 	<function name="executeSQLInsert" ret="bool">
+	 		 	<param name="string tableName" type="required" />
+	 		 	<param name="string values" type="required" />
+	 		 	<param name="string columns" type="optional" />
+	 		 	<description>This function adds a row in the database.</description>
+	 	</function>
+	 	<function name="executeSQLQuery" ret="table">
+	 		 	<param name="string query" type="required" />
+	 		 	<param name="var param1" type="optional" />
+	 		 	<param name="var param2" type="optional" />
+	 		 	<param name="..." type="optional" />
+	 		 	<description>This function executes an arbitrary SQL query and returns the result rows if there are any. It allows parameter binding for security (SQL injection is rendered impossible).</description>
+	 	</function>
+	 	<function name="executeSQLSelect" ret="table">
+	 		 	<param name="string tableName" type="required" />
+	 		 	<param name="string fields" type="required" />
+	 		 	<param name="string conditions" type="optional" />
+	 		 	<param name="int limit" type="optional" />
+	 		 	<description>This function retrieves rows from a table in the database, if they exist. If you pass the table name, along with the columns you want to retrieve (and any conditions for the row) this function will return a table containing the corresponding values.</description>
+	 	</function>
+	 	<function name="executeSQLUpdate" ret="bool">
+	 		 	<param name="string tableName" type="required" />
+	 		 	<param name="string set" type="required" />
+	 		 	<param name="string conditions" type="optional" />
+	 		 	<description>This function updates one or more rows in the database, by using the set parameter and conditions to change field values in specific rows.</description>
+	 	</function>
+	</group>
+	<group name="Team functions">
+	 	<function name="countPlayersInTeam" ret="int">
+	 		 	<param name="team theTeam" type="required" />
+	 		 	<description>This function is for returning the number of players in the specified team.</description>
+	 	</function>
+	 	<function name="createTeam" ret="team">
+	 		 	<param name="string teamName" type="required" />
+	 		 	<param name="int colorR=255" type="optional" />
+	 		 	<param name="int colorG=255" type="optional" />
+	 		 	<param name="int colorB=255" type="optional" />
+	 		 	<description>This function is for creating a new team, which can be used to group players. Players will not join the team until they are respawned.</description>
+	 	</function>
+	 	<function name="getPlayersInTeam" ret="table">
+	 		 	<param name="team theTeam" type="required" />
+	 		 	<description>This function retrieves all the players of the specified team.</description>
+	 	</function>
+	 	<function name="getPlayerTeam" ret="team">
+	 		 	<param name="player thePlayer" type="required" />
+	 		 	<description>This function gets the current team a player is on.</description>
+	 	</function>
+	 	<function name="getTeamColor" ret="int, int, int">
+	 		 	<param name="team theTeam" type="required" />
+	 		 	<description>This function retrieves the color of a team.</description>
+	 	</function>
+	 	<function name="getTeamFriendlyFire" ret="bool">
+	 		 	<param name="team theTeam" type="required" />
+	 		 	<description>This function tells you if friendly fire is turned on for the specified team.</description>
+	 	</function>
+	 	<function name="getTeamFromName" ret="team">
+	 		 	<param name="string teamName" type="required" />
+	 		 	<description>This function finds a team object by the team's name.</description>
+	 	</function>
+	 	<function name="getTeamName" ret="string">
+	 		 	<param name="team theTeam" type="required" />
+	 		 	<description>This function gets the team name of a team object.</description>
+	 	</function>
+	 	<function name="setPlayerTeam" ret="bool">
+	 		 	<param name="player thePlayer" type="required" />
+	 		 	<param name="team theTeam" type="required" />
+	 		 	<description>This function adds a player to an existing team. The player will automatically be removed from his current team if he's on one.</description>
+	 	</function>
+	 	<function name="setTeamColor" ret="bool">
+	 		 	<param name="team theTeam" type="required" />
+	 		 	<param name="int colorR" type="required" />
+	 		 	<param name="int colorG" type="required" />
+	 		 	<param name="int colorB" type="required" />
+	 		 	<description>This function is for setting the color of a specified team. This color is shown, for example, in the team players' nametags.</description>
+	 	</function>
+	 	<function name="setTeamFriendlyFire" ret="bool">
+	 		 	<param name="team theTeam" type="required" />
+	 		 	<param name="bool friendlyFire" type="required" />
+	 		 	<description>This function sets the friendly fire value for the specified team.</description>
+	 	</function>
+	 	<function name="setTeamName" ret="bool">
+	 		 	<param name="team theTeam" type="required" />
+	 		 	<param name="string newName" type="required" />
+	 		 	<description>This function is used to set a team's name.</description>
+	 	</function>
+	</group>
+	<group name="Text functions">
+	 	<function name="textCreateDisplay" ret="textdisplay">
+	 		 	<description>A text display is like a canvas that can contain many items of text. Each display can be seen by multiple observers (players) and each player can see multiple displays.</description>
+	 	</function>
+	 	<function name="textCreateTextItem" ret="textitem">
+	 		 	<param name="string text" type="optional" />
+	 		 	<param name="float x" type="optional" />
+	 		 	<param name="float y" type="optional" />
+	 		 	<param name="string priority" type="optional" />
+	 		 	<param name="int red=255" type="optional" />
+	 		 	<param name="int green=0" type="optional" />
+	 		 	<param name="int blue=0" type="optional" />
+	 		 	<param name="int alpha=255" type="optional" />
+	 		 	<param name="float scale=1" type="optional" />
+	 		 	<param name="string alignX=left" type="optional" />
+	 		 	<param name="string alignY=top" type="optional" />
+	 		 	<description>This function creates a text item. A text item represents a single area of text, much like a label does in standard GUI programming. A text item can only be seen by players if it is added to a textdisplay using textDisplayAddText. Each text item can be added to multiple displays, if need be.</description>
+	 	</function>
+	 	<function name="textDestroyDisplay" ret="bool">
+	 		 	<param name="textdisplay display" type="required" />
+	 		 	<description>This function destroys a text display and will unlink all the textitems on it. This does not stop the textitems existing, but anyone who was observing the textitems through this display will stop seeing them.</description>
+	 	</function>
+	 	<function name="textDestroyTextItem" ret="void">
+	 		 	<param name="textitem theTextitem" type="required" />
+	 		 	<description>This function destroys a textitem object.</description>
+	 	</function>
+	 	<function name="textDisplayAddObserver" ret="void">
+	 		 	<param name="textdisplay display" type="required" />
+	 		 	<param name="player playerToAdd" type="required" />
+	 		 	<description>This function adds a player as an observer of a textdisplay. This allows the player to see any textitems that the textdisplay contains.</description>
+	 	</function>
+	 	<function name="textDisplayAddText" ret="void">
+	 		 	<param name="textdisplay displayToAddTo" type="required" />
+	 		 	<param name="textitem itemToAdd" type="required" />
+	 		 	<description>This function adds a textitem to a textdisplay. This allows any observers of the textdisplay to see the textitem.</description>
+	 	</function>
+	 	<function name="textDisplayRemoveObserver" ret="void">
+	 		 	<param name="textdisplay display" type="required" />
+	 		 	<param name="player playerToRemove" type="required" />
+	 		 	<description>This function removes a player observer of a textdisplay. This stops the player from being able to see textitems that the textdisplay contains.</description>
+	 	</function>
+	 	<function name="textDisplayRemoveText" ret="void">
+	 		 	<param name="textdisplay displayToRemoveFrom" type="required" />
+	 		 	<param name="textitem itemToRemove" type="required" />
+	 		 	<description>This function removes a textitem from a textdisplay. This stops any observers of the textdisplay from being able to see the textitem.</description>
+	 	</function>
+	 	<function name="textItemGetColor" ret="int, int, int, int">
+	 		 	<param name="textitem theTextItem" type="required" />
+	 		 	<description>This function allows you to retrieve the color of a text item.</description>
+	 	</function>
+	 	<function name="textItemGetPosition" ret="float, float">
+	 		 	<param name="textitem theTextItem" type="required" />
+	 		 	<description>This function allows retrieval of the position of a text item.</description>
+	 	</function>
+	 	<function name="textItemGetPriority" ret="string">
+	 		 	<param name="textitem textitemToCheck" type="required" />
+	 		 	<description>This function retrieves the priority of a text item. Priority defines the rate at whihc a text item is updated</description>
+	 	</function>
+	 	<function name="textItemGetScale" ret="float">
+	 		 	<param name="textitem theTextitem" type="required" />
+	 		 	<description>This function allows retrieval of the scale or size of a text item.</description>
+	 	</function>
+	 	<function name="textItemGetText" ret="string">
+	 		 	<param name="textitem theTextitem" type="required" />
+	 		 	<description>This function returns the current text of the specified textitem.</description>
+	 	</function>
+	 	<function name="textItemSetColor" ret="bool">
+	 		 	<param name="textitem theTextItem" type="required" />
+	 		 	<param name="int r" type="required" />
+	 		 	<param name="int g" type="required" />
+	 		 	<param name="int b" type="required" />
+	 		 	<param name="int a" type="required" />
+	 		 	<description>This function sets the color of a text item.</description>
+	 	</function>
+	 	<function name="textItemSetPosition" ret="bool">
+	 		 	<param name="textitem theTextItem" type="required" />
+	 		 	<param name="float x" type="required" />
+	 		 	<param name="float y" type="required" />
+	 		 	<description>This function allows the setting of the position of a text item.</description>
+	 	</function>
+	 	<function name="textItemSetPriority" ret="void">
+	 		 	<param name="textitem theTextItem" type="required" />
+	 		 	<param name="string priority" type="required" />
+	 		 	<description>This function sets the priority for a text item. Priority is the importance of sending updated text to the client. The system is implemented as 3 queues, with the high queue being emptied before the medium queue is processed, and with one update sent per server frame. Hence, if you set all your text items to medium priority it has the same effect as if you set them all to high or low.</description>
+	 	</function>
+	 	<function name="textItemSetScale" ret="bool">
+	 		 	<param name="textitem theTextitem" type="required" />
+	 		 	<param name="float scale" type="required" />
+	 		 	<description>This function allows the setting of the scale of a text item.</description>
+	 	</function>
+	 	<function name="textItemSetText" ret="void">
+	 		 	<param name="textitem theTextitem" type="required" />
+	 		 	<param name="string text" type="required" />
+	 		 	<description>Overwrites a previously created text item with the specified text.</description>
+	 	</function>
+	 	<function name="textDisplayGetObservers" ret="table">
+	 		 	<param name="textdisplay theDisplay" type="required" />
+	 		 	<description>This function can be used to retrieve all the players currently observing a specified textdisplay.</description>
+	 	</function>
+	 	<function name="textDisplayIsObserver" ret="bool">
+	 		 	<param name="textdisplay display" type="required" />
+	 		 	<param name="player thePlayer" type="required" />
+	 		 	<description>This function checks if a player can see the specified textdisplay.</description>
+	 	</function>
+	</group>
+	<group name="Utility functions">
+	 	<function name="getColorFromString" ret="int, int, int, int">
+	 		 	<param name="string theColor" type="required" />
+	 		 	<description>This function will extract Red, Green, Blue and Alpha values from a hex string you provide it. These strings follow the same format as used in HTML, with addition of the Alpha values.</description>
+	 	</function>
+	 	<function name="getDistanceBetweenPoints2D" ret="float">
+	 		 	<param name="float x1" type="required" />
+	 		 	<param name="float y1" type="required" />
+	 		 	<param name="float x2" type="required" />
+	 		 	<param name="float y2" type="required" />
+	 		 	<description>This function returns the distance between two 2 dimensional points using the pythagorean theorem.</description>
+	 	</function>
+	 	<function name="getDistanceBetweenPoints3D" ret="float">
+	 		 	<param name="float x1" type="required" />
+	 		 	<param name="float y1" type="required" />
+	 		 	<param name="float z1" type="required" />
+	 		 	<param name="float x2" type="required" />
+	 		 	<param name="float y2" type="required" />
+	 		 	<param name="float z2" type="required" />
+	 		 	<description>This function returns the distance between two 3 dimensional points using the pythagorean theorem.</description>
+	 	</function>
+	 	<function name="getRealTime" ret="table">
+	 		 	<param name="int seconds=current" type="optional" />
+	 		 	<description>This function gets the real server time and returns it in a table. If you want to get the in-game time (shown on GTA's clock) use getTime.</description>
+	 	</function>
+	 	<function name="getTickCount" ret="int">
+	 		 	<description>This function returns amount of time that your system has been running in milliseconds. By comparing two values of getTickCount, you can determine how much time has passed (in milliseconds) between two events. This could be used to determine how efficient your code is, or to time how long a player takes to complete a task.</description>
+	 	</function>
+	 	<function name="getTimers" ret="table">
+	 		 	<param name="time" type="optional" />
+	 		 	<description>This function returns a table of all active timers. Alternatively, only the timers with a remaining time less than or equal to a certain value can be retrieved.</description>
+	 	</function>
+	 	<function name="gettok" ret="string">
+	 		 	<param name="string text" type="required" />
+	 		 	<param name="int tokenNumber" type="required" />
+	 		 	<param name="int separatingCharacter" type="required" />
+	 		 	<description>This function splits a string using the given separating character and returns one specified substring.</description>
+	 	</function>
+	 	<function name="killTimer" ret="bool">
+	 		 	<param name="timer theTimer" type="required" />
+	 		 	<description>This function allows you to kill/halt existing timers.</description>
+	 	</function>
+	 	<function name="setTimer" ret="timer">
+	 		 	<param name="function theFunction" type="required" />
+	 		 	<param name="int timeInterval" type="required" />
+	 		 	<param name="int timesToExecute" type="required" />
+	 		 	<param name="var arguments..." type="optional" />
+	 		 	<description>This function allows you to trigger a function after a number of milliseconds have elapsed. You can call one of your own functions or a built-in function. For example, you could set a timer to spawn a player after a number of seconds have elapsed.</description>
+	 	</function>
+	 	<function name="split" ret="table">
+	 		 	<param name="string stringToSplit" type="required" />
+	 		 	<param name="int separatingChar" type="required" />
+	 		 	<description>This function splits a string into substrings. You specify a character that will act as a separating character; this will determine where to split the sub-strings. For example, it can split the string "Hello World" into two strings containing the two words, by spliting using a space as a separator.</description>
+	 	</function>
+	 	<function name="isTimer" ret="bool">
+	 		 	<param name="var theVariable" type="required" />
+	 		 	<description>This function checks if a variable is a timer.</description>
+	 	</function>
+	 	<function name="md5" ret="string">
+	 		 	<param name="string str" type="required" />
+	 		 	<description>Calculates the MD5 hash of the specified string and returns its hexadecimal representation.</description>
+	 	</function>
+	</group>
+	<group name="Vehicle functions">
+	 	<function name="addVehicleUpgrade" ret="bool">
+	 		 	<param name="vehicle theVehicle" type="required" />
+	 		 	<param name="int upgrade" type="required" />
+	 		 	<description>This function adds an upgrade to an existing vehicle, eg: nos, hyrdraulics.</description>
+	 	</function>
+	 	<function name="attachTrailerToVehicle" ret="bool">
+	 		 	<param name="vehicle theVehicle" type="required" />
+	 		 	<param name="vehicle theTrailer" type="required" />
+	 		 	<description>This function attaches a trailer type vehicle to a trailer-towing-type vehicle.</description>
+	 	</function>
+	 	<function name="blowVehicle" ret="bool">
+	 		 	<param name="vehicle vehicleToBlow" type="required" />
+	 		 	<param name="bool explode=true" type="optional" />
+	 		 	<description>This function will blow up a vehicle. This will cause an explosion and will kill the driver and any passengers inside it.</description>
+	 	</function>
+	 	<function name="createVehicle" ret="vehicle">
+	 		 	<param name="int model" type="required" />
+	 		 	<param name="float x" type="required" />
+	 		 	<param name="float y" type="required" />
+	 		 	<param name="float z" type="required" />
+	 		 	<param name="float rx" type="optional" />
+	 		 	<param name="float ry" type="optional" />
+	 		 	<param name="float rz" type="optional" />
+	 		 	<param name="string numberplate" type="optional" />
+	 		 	<description>This function creates a vehicle at the specified location.</description>
+	 	</function>
+	 	<function name="detachTrailerFromVehicle" ret="bool">
+	 		 	<param name="vehicle theVehicle" type="required" />
+	 		 	<param name="vehicle theTrailer" type="optional" />
+	 		 	<description>This function detaches an already attached trailer from a vehicle.</description>
+	 	</function>
+	 	<function name="fixVehicle" ret="bool">
+	 		 	<param name="vehicle theVehicle" type="required" />
+	 		 	<description>This function will set a vehicle's health to full and fix its damage model. If you wish to only change the vehicle's health, without affecting its damage model, use setElementHealth.</description>
+	 	</function>
+	 	<function name="getVehicleColor" ret="int, int, int, int">
+	 		 	<param name="vehicle theVehicle" type="required" />
+	 		 	<description>This function returns the color of the specified vehicle. A vehicle can have up to four colors.</description>
+	 	</function>
+	 	<function name="getVehicleCompatibleUpgrades" ret="table">
+	 		 	<param name="vehicle theVehicle" type="required" />
+	 		 	<param name="int slot" type="optional" />
+	 		 	<description>This function returns a table of all the compatible upgrades (or all for a specified slot, optionally) for a specifed vehicle.</description>
+	 	</function>
+	 	<function name="getVehicleController" ret="player">
+	 		 	<param name="vehicle theVehicle" type="required" />
+	 		 	<description>This function is used to get the player in control of the specified vehicle.</description>
+	 	</function>
+	 	<function name="getVehicleDoorState" ret="int">
+	 		 	<param name="vehicle theVehicle" type="required" />
+	 		 	<param name="int door" type="required" />
+	 		 	<description>This function returns the current state of a specifed door on the vehicle.</description>
+	 	</function>
+	 	<function name="getVehicleEngineState" ret="bool">
+	 		 	<param name="vehicle theVehicle" type="required" />
+	 		 	<description>This function returns a vehicle's engine state (on or off).</description>
+	 	</function>
+	 	<function name="getVehicleLandingGearDown" ret="bool">
+	 		 	<param name="vehicle theVehicle" type="required" />
+	 		 	<description>This function is used to check whether a vehicle's landing gear is down or not. Only planes can be used with this function.</description>
+	 	</function>
+	 	<function name="getVehicleLightState" ret="int">
+	 		 	<param name="vehicle theVehicle" type="required" />
+	 		 	<param name="int light" type="required" />
+	 		 	<description>This function returns the current state of the specified light on the vehicle.</description>
+	 	</function>
+	 	<function name="getVehicleMaxPassengers" ret="int">
+	 		 	<param name="vehicle theVehicle" type="required" />
+	 		 	<description>This function returns the maximum number of passengers that a specified vehicle can hold. Only passenger seats are counted, the driver seat is excluded.</description>
+	 	</function>
+	 	<function name="getVehicleName" ret="string">
+	 		 	<param name="vehicle theVehicle" type="required" />
+	 		 	<description>This function returns a string containing the name of the vehicle</description>
+	 	</function>
+	 	<function name="getVehicleOccupant" ret="player">
+	 		 	<param name="vehicle theVehicle" type="required" />
+	 		 	<param name="int seat=0" type="optional" />
+	 		 	<description>This function gets the player sitting in the specified vehicle.</description>
+	 	</function>
+	 	<function name="getVehicleOverrideLights" ret="int">
+	 		 	<param name="vehicle theVehicle" type="required" />
+	 		 	<description>This function is used to find out the current state of the override-lights setting of a vehicle.</description>
+	 	</function>
+	 	<function name="getVehiclePaintjob" ret="int">
+	 		 	<param name="vehicle theVehicle" type="required" />
+	 		 	<description>This function gets the current paintjob on the specified vehicle.</description>
+	 	</function>
+	 	<function name="getVehiclePanelState" ret="int">
+	 		 	<param name="vehicle theVehicle" type="required" />
+	 		 	<param name="int panel" type="required" />
+	 		 	<description>This function returns the current state of a specifed panel on the vehicle. A vehicle can have up to 7 panels.</description>
+	 	</function>
+	 	<function name="getVehicleRotation" ret="float, float, float">
+	 		 	<param name="vehicle theVehicle" type="required" />
+	 		 	<description>This function gets the rotation of a vehicle along the X, Y, and Z axes in degrees.</description>
+	 	</function>
+	 	<function name="getVehicleSirensOn" ret="bool">
+	 		 	<param name="vehicle theVehicle" type="required" />
+	 		 	<description>This function returns whether the sirens are turned on for the specified vehicle.</description>
+	 	</function>
+	 	<function name="getVehiclesOfType" ret="table">
+	 		 	<param name="int model" type="required" />
+	 		 	<description>This function scans through all the current vehicles and returns the ones matching the given model.</description>
+	 	</function>
+	 	<function name="getVehicleTowedByVehicle" ret="vehicle">
+	 		 	<param name="vehicle theVehicle" type="required" />
+	 		 	<description>This function is used to get the vehicle being towed by another.</description>
+	 	</function>
+	 	<function name="getVehicleTowingVehicle" ret="vehicle">
+	 		 	<param name="vehicle theVehicle" type="required" />
+	 		 	<description>This function is used to get the vehicle that is towing another.</description>
+	 	</function>
+	 	<function name="getVehicleTurnVelocity" ret="float, float, float">
+	 		 	<param name="vehicle theVehicle" type="required" />
+	 		 	<description>This function is used to retrieve a vehicle's turning velocity for each axis.</description>
+	 	</function>
+	 	<function name="getVehicleTurretPosition" ret="float, float">
+	 		 	<param name="vehicle turretVehicle" type="required" />
+	 		 	<description>This function gets the position of a vehicle's turret, if it has one. Vehicles with turrets include firetrucks and tanks.</description>
+	 	</function>
+	 	<function name="getVehicleUpgradeOnSlot" ret="int">
+	 		 	<param name="vehicle theVehicle" type="required" />
+	 		 	<param name="int slot" type="required" />
+	 		 	<description>This function returns the current upgrade id on the specified vehicle's 'upgrade slot'</description>
+	 	</function>
+	 	<function name="getVehicleUpgrades" ret="table">
+	 		 	<param name="vehicle theVehicle" type="required" />
+	 		 	<description>This function returns a table of all the upgrades on a specifed vehicle.</description>
+	 	</function>
+	 	<function name="getVehicleUpgradeSlotName" ret="string">
+	 		 	<param name="int slot/upgrade" type="required" />
+	 		 	<description>This function returns the name of an upgrade slot name (e.g. roof, spoiler).</description>
+	 	</function>
+	 	<function name="getVehicleWheelStates" ret="int, int, int, int">
+	 		 	<param name="vehicle theVehicle" type="required" />
+	 		 	<description>This function returns the current states of all the wheels on the vehicle.</description>
+	 	</function>
+	 	<function name="isVehicleFrozen" ret="bool">
+	 		 	<param name="vehicle theVehicle" type="required" />
+	 		 	<description>This function checks if a vehicle has been frozen.</description>
+	 	</function>
+	 	<function name="isVehicleFuelTankExplodable" ret="bool">
+	 		 	<param name="vehicle theVehicle" type="required" />
+	 		 	<description>This will tell you if a vehicle's petrol tank is explodable.</description>
+	 	</function>
+	 	<function name="isVehicleLocked" ret="bool">
+	 		 	<param name="vehicle theVehicle" type="required" />
+	 		 	<description>This will tell you if a vehicle is locked.</description>
+	 	</function>
+	 	<function name="isVehicleOnGround" ret="bool">
+	 		 	<param name="vehicle theVehicle" type="required" />
+	 		 	<description>Checks to see if a vehicle has contact with the ground.</description>
+	 	</function>
+	 	<function name="removeVehicleUpgrade" ret="bool">
+	 		 	<param name="vehicle theVehicle" type="required" />
+	 		 	<param name="int upgrade" type="required" />
+	 		 	<description>This function removes an already existing upgrade from the specified vehicle, eg: nos, hydraulics. Defined in San Andreas\data\maps\veh_mods\veh_mods.ide.</description>
+	 	</function>
+	 	<function name="resetVehicleExplosionTime" ret="bool">
+	 		 	<param name="vehicle theVehicle" type="required" />
+	 		 	<description>Resets the vehicle explosion time. This is the point in time at which the vehicle last exploded: at this time plus the vehicle's respawn delay, the vehicle is respawned. You can use this function to prevent the vehicle from respawning.</description>
+	 	</function>
+	 	<function name="resetVehicleIdleTime" ret="bool">
+	 		 	<param name="vehicle theVehicle" type="required" />
+	 		 	<description>Resets the vehicle idle time</description>
+	 	</function>
+	 	<function name="respawnVehicle" ret="bool">
+	 		 	<param name="vehicle theVehicle" type="required" />
+	 		 	<description>This function respawns a vehicle according to its set respawn position, set by setVehicleRespawnPosition. To spawn to a specific location, spawnVehicle can be used..</description>
+	 	</function>
+	 	<function name="setVehicleColor" ret="bool">
+	 		 	<param name="vehicle theVehicle" type="required" />
+	 		 	<param name="int color1" type="required" />
+	 		 	<param name="int color2" type="required" />
+	 		 	<param name="int color3" type="required" />
+	 		 	<param name="int color4" type="required" />
+	 		 	<description>This function will set the color of a vehicle. Each vehicle can have up to 4 colors, for different aspects of the vehicle. Most vehicles only use two of the colors.</description>
+	 	</function>
+	 	<function name="setVehicleDamageProof" ret="bool">
+	 		 	<param name="vehicle theVehicle" type="required" />
+	 		 	<param name="bool damageProof" type="required" />
+	 		 	<description>This functions makes a vehicle damage proof, so it won't take damage from bullets, hits, explosions or fire. A damage proof's vehicle health can still be changed via script. Also, flipping the vehicle still causes it to explode.</description>
+	 	</function>
+	 	<function name="setVehicleDirtLevel" ret="bool">
+	 		 	<param name="vehicle theVehicle" type="required" />
+	 		 	<param name="int dirtLevel" type="required" />
+	 		 	<description>This function sets the dirt level on a vehicle.</description>
+	 	</function>
+	 	<function name="setVehicleDoorState" ret="bool">
+	 		 	<param name="vehicle theVehicle" type="required" />
+	 		 	<param name="int door" type="required" />
+	 		 	<param name="int state" type="required" />
+	 		 	<description>This function sets the damage state of a specified door on a vehicle.</description>
+	 	</function>
+	 	<function name="setVehicleDoorsUndamageable" ret="bool">
+	 		 	<param name="vehicle theVehicle" type="required" />
+	 		 	<param name="bool state" type="required" />
+	 		 	<description>This function makes a vehicle's doors undamageable, so they won't fall off when they're hit. Note that the vehicle has to be locked using setVehicleLocked for this setting to have any effect.</description>
+	 	</function>
+	 	<function name="setVehicleEngineState" ret="bool">
+	 		 	<param name="vehicle theVehicle" type="required" />
+	 		 	<param name="bool engineState" type="required" />
+	 		 	<description>This function turns a vehicle's engine on or off. Note that the engine will always be turned on when someone enters the driver seat, unless you override that behaviour with scripts.</description>
+	 	</function>
+	 	<function name="setVehicleFrozen" ret="bool">
+	 		 	<param name="vehicle theVehicle" type="required" />
+	 		 	<param name="bool freezeStatus" type="required" />
+	 		 	<description>This function freezes a vehicle (stops it in its position and disables movement) or unfreezes it.</description>
+	 	</function>
+	 	<function name="setVehicleFuelTankExplodable" ret="bool">
+	 		 	<param name="vehicle theVehicle" type="required" />
+	 		 	<param name="bool explodable" type="required" />
+	 		 	<description>This function changes the 'explodable state' of a vehicle's fuel tank, which toggles the ability to blow the vehicle up by shooting the tank. This function will have no effect on vehicles with tanks that cannot be shot in single player.</description>
+	 	</function>
+	 	<function name="setVehicleGunsEnabled" ret="bool">
+	 		 	<param name="vehicle theVehicle" type="required" />
+	 		 	<param name="bool gunsEnabled" type="required" />
+	 		 	<description>This function enables or disables the weapons on a vehicle</description>
+	 	</function>
+	 	<function name="setVehicleIdleRespawnDelay" ret="bool">
+	 		 	<param name="vehicle theVehicle" type="required" />
+	 		 	<param name="int timeDelay" type="required" />
+	 		 	<description>This function sets the time delay (in milliseconds) the vehicle will remain at its position while empty. The vehicle is considered occupied if anyone is within streaming range. toggleVehicleRespawn must be set to true for this function to work.</description>
+	 	</function>
+	 	<function name="setVehicleLandingGearDown" ret="bool">
+	 		 	<param name="vehicle theVehicle" type="required" />
+	 		 	<param name="bool gearState" type="required" />
+	 		 	<description>This function is used to set the landing gear state of certain vehicles.</description>
+	 	</function>
+	 	<function name="setVehicleLightState" ret="bool">
+	 		 	<param name="vehicle theVehicle" type="required" />
+	 		 	<param name="int light" type="required" />
+	 		 	<param name="int state" type="required" />
+	 		 	<description>This function sets the state of the light on the vehicle.</description>
+	 	</function>
+	 	<function name="setVehicleLocked" ret="bool">
+	 		 	<param name="vehicle theVehicle" type="required" />
+	 		 	<param name="bool locked" type="required" />
+	 		 	<description>This function can be used to set a vehicle to be locked or unlocked. Locking a vehicle restricts access to all doors of a vehicle.</description>
+	 	</function>
+	 	<function name="setVehicleOverrideLights" ret="bool">
+	 		 	<param name="vehicle theVehicle" type="required" />
+	 		 	<param name="int value" type="required" />
+	 		 	<description>This function changes the light overriding setting on a vehicle.</description>
+	 	</function>
+	 	<function name="setVehiclePaintjob" ret="bool">
+	 		 	<param name="vehicle theVehicle" type="required" />
+	 		 	<param name="int value" type="required" />
+	 		 	<description>This function changes the paintjob on the specified vehicle.</description>
+	 	</function>
+	 	<function name="setVehiclePanelState" ret="bool">
+	 		 	<param name="vehicle theVehicle" type="required" />
+	 		 	<param name="int panelID" type="required" />
+	 		 	<param name="int state" type="required" />
+	 		 	<description>This function allows you to change the state of one of the six panels vehicle's can have. When executed on the server-side resources, the damage will be synched for all players, whereas the change is only client-side if the function is used in a client resource.</description>
+	 	</function>
+	 	<function name="setVehicleRespawnDelay" ret="bool">
+	 		 	<param name="vehicle theVehicle" type="required" />
+	 		 	<param name="int timeDelay" type="required" />
+	 		 	<description>This function sets the time delay (in milliseconds) the vehicle will remain wrecked before respawning.</description>
+	 	</function>
+	 	<function name="setVehicleRespawnPosition" ret="bool">
+	 		 	<param name="vehicle theVehicle" type="required" />
+	 		 	<param name="float x" type="required" />
+	 		 	<param name="float y" type="required" />
+	 		 	<param name="float z" type="required" />
+	 		 	<param name="float rx" type="optional" />
+	 		 	<param name="float ry" type="optional" />
+	 		 	<param name="float rz" type="optional" />
+	 		 	<description>This function sets the position (and rotation) the vehicle will respawn to.</description>
+	 	</function>
+	 	<function name="setVehicleRotation" ret="bool">
+	 		 	<param name="vehicle theVehicle" type="required" />
+	 		 	<param name="rx" type="required" />
+	 		 	<param name="ry" type="required" />
+	 		 	<param name="rz" type="required" />
+	 		 	<description>This function rotates a vehicle around a single point.</description>
+	 	</function>
+	 	<function name="setVehicleSirensOn" ret="bool">
+	 		 	<param name="vehicle theVehicle" type="required" />
+	 		 	<param name="bool sirensOn" type="required" />
+	 		 	<description>This function changes the state of the sirens on the specified vehicle.</description>
+	 	</function>
+	 	<function name="setVehicleTurnVelocity" ret="bool">
+	 		 	<param name="vehicle theVehicle" type="required" />
+	 		 	<param name="float rx" type="required" />
+	 		 	<param name="float ry" type="required" />
+	 		 	<param name="float rz" type="required" />
+	 		 	<description>Sets the angular velocity of a vehicle. Basically applies a spin to it.</description>
+	 	</function>
+	 	<function name="setVehicleWheelStates" ret="bool">
+	 		 	<param name="vehicle theVehicle" type="required" />
+	 		 	<param name="int frontLeft" type="required" />
+	 		 	<param name="int rearLeft=-1" type="optional" />
+	 		 	<param name="int frontRight=-1" type="optional" />
+	 		 	<param name="int rearRight=-1" type="optional" />
+	 		 	<description>This function sets the state of wheels on the vehicle.</description>
+	 	</function>
+	 	<function name="spawnVehicle" ret="bool">
+	 		 	<param name="vehicle theVehicle" type="required" />
+	 		 	<param name="float x" type="required" />
+	 		 	<param name="float y" type="required" />
+	 		 	<param name="float z" type="required" />
+	 		 	<param name="float rx" type="required" />
+	 		 	<param name="float ry" type="required" />
+	 		 	<param name="float rz" type="required" />
+	 		 	<description>Spawns a vehicle at any given position and rotation</description>
+	 	</function>
+	 	<function name="toggleVehicleRespawn" ret="bool">
+	 		 	<param name="vehicle theVehicle" type="required" />
+	 		 	<param name="bool Respawn" type="required" />
+	 		 	<description>This function toggles whether or not the vehicle will be respawned after blown or idle.</description>
+	 	</function>
+	 	<function name="getTrainDirection" ret="bool">
+	 		 	<param name="vehicle train" type="required" />
+	 		 	<description>Gets the direction in which a train is driving (clockwise or counterclockwise).</description>
+	 	</function>
+	 	<function name="getTrainSpeed" ret="float">
+	 		 	<param name="vehicle train" type="required" />
+	 		 	<description>Gets the speed at which a train is traveling on the rails.</description>
+	 	</function>
+	 	<function name="getVehicleHeadLightColor" ret="int, int, int">
+	 		 	<param name="vehicle theVehicle" type="required" />
+	 		 	<description>This function will get the headlight color of a vehicle.</description>
+	 	</function>
+	 	<function name="getVehicleModelFromName" ret="int">
+	 		 	<param name="string name" type="required" />
+	 		 	<description>This function retrieves the model ID of a vehicle as an integer value from its name.</description>
+	 	</function>
+	 	<function name="getVehicleNameFromModel" ret="string">
+	 		 	<param name="int model" type="required" />
+	 		 	<description>Gets the name of a vehicle by its model ID.</description>
+	 	</function>
+	 	<function name="getVehicleType" ret="string">
+	 		 	<param name="vehicle theVehicle" type="required" />
+	 		 	<description>This function retrieves the type of a vehicle (such as if it is a car or a boat).</description>
+	 	</function>
+	 	<function name="isTrainDerailable" ret="bool">
+	 		 	<param name="vehicle vehicleToCheck" type="required" />
+	 		 	<description>This function will check if a train or tram is derailable.</description>
+	 	</function>
+	 	<function name="isTrainDerailed" ret="bool">
+	 		 	<param name="vehicle vehicleToCheck" type="required" />
+	 		 	<description>This function will check if a train or tram is derailed.</description>
+	 	</function>
+	 	<function name="isVehicleBlown" ret="bool">
+	 		 	<param name="vehicle theVehicle" type="required" />
+	 		 	<description>This function allows you to determine whether a vehicle is blown or still intact.</description>
+	 	</function>
+	 	<function name="isVehicleTaxiLightOn" ret="bool">
+	 		 	<param name="vehicle taxi" type="required" />
+	 		 	<description>This function will get the taxi light state of a taxi (vehicle ID's 420 and 438)</description>
+	 	</function>
+	 	<function name="setTrainDerailable" ret="bool">
+	 		 	<param name="vehicle derailableVehicle" type="required" />
+	 		 	<param name="bool derailable" type="required" />
+	 		 	<description>This function will set a train or tram as derailable. This is, if it can derail when it goes above the maximum speed.</description>
+	 	</function>
+	 	<function name="setTrainDerailed" ret="bool">
+	 		 	<param name="vehicle vehicleToDerail" type="required" />
+	 		 	<param name="bool derailed" type="required" />
+	 		 	<description>This function will set a train or tram as derailed.</description>
+	 	</function>
+	 	<function name="setTrainDirection" ret="bool">
+	 		 	<param name="vehicle train" type="required" />
+	 		 	<param name="bool clockwise" type="required" />
+	 		 	<description>Sets the direction in which a train or tram drives over the rails (clockwise or counterclockwise).</description>
+	 	</function>
+	 	<function name="setTrainSpeed" ret="bool">
+	 		 	<param name="vehicle train" type="required" />
+	 		 	<param name="float speed" type="required" />
+	 		 	<description>Sets the on-track speed of a train.</description>
+	 	</function>
+	 	<function name="setVehicleHeadLightColor" ret="bool">
+	 		 	<param name="vehicle theVehicle" type="required" />
+	 		 	<param name="int red" type="required" />
+	 		 	<param name="int green" type="required" />
+	 		 	<param name="int blue" type="required" />
+	 		 	<description>This function will set the headlight color of a vehicle. valid Red Green and Blue arguments range from 0-255</description>
+	 	</function>
+	 	<function name="setVehicleTaxiLightOn" ret="bool">
+	 		 	<param name="vehicle taxi" type="required" />
+	 		 	<param name="bool LightState" type="required" />
+	 		 	<description>This function will set the taxi light on in a taxi (vehicle ID's 420 and 438)</description>
+	 	</function>
+	</group>
+	<group name="Water functions">
+	 	<function name="getWaveHeight" ret="float">
+	 		 	<description>This function returns the current wave height.</description>
+	 	</function>
+	 	<function name="setWaveHeight" ret="bool">
+	 		 	<param name="float height" type="required" />
+	 		 	<description>This function sets the wave height to the desired value, the default is 0.</description>
+	 	</function>
+	 	<function name="createWater" ret="water">
+	 		 	<param name="float x1" type="required" />
+	 		 	<param name="float y1" type="required" />
+	 		 	<param name="float z1" type="required" />
+	 		 	<param name="float x2" type="required" />
+	 		 	<param name="float y2" type="required" />
+	 		 	<param name="float z2" type="required" />
+	 		 	<param name="float x3" type="required" />
+	 		 	<param name="float y3" type="required" />
+	 		 	<param name="float z3" type="required" />
+	 		 	<param name="float x4" type="optional" />
+	 		 	<param name="float y4" type="optional" />
+	 		 	<param name="float z4" type="optional" />
+	 		 	<description>Creates an area of water.</description>
+	 	</function>
+	 	<function name="getWaterLevel" ret="bool/float">
+	 		 	<param name="float posX" type="required" />
+	 		 	<param name="float posY" type="required" />
+	 		 	<param name="float posZ" type="required" />
+	 		 	<description>This function allows you to retrieve the water level from a certain location. The water level is 0 in most places though it can vary (e.g. it's higher near the dam).</description>
+	 	</function>
+	 	<function name="setWaterLevel" ret="bool">
+	 		 	<param name="water theWater" type="optional" />
+	 		 	<param name=" float level" type="optional" />
+	 		 	<description>Sets the height of some or all the water in the game world.</description>
+	 	</function>
+	 	<function name="getWaterVertexPosition" ret="float, float, float">
+	 		 	<param name="water theWater" type="required" />
+	 		 	<param name="int vertexIndex" type="required" />
+	 		 	<description>Gets the world position of a vertex (i.e. corner) of a water area. Each water area is either a triangle or quad (rectangle) so each has 3 or 4 corners.</description>
+	 	</function>
+	 	<function name="setWaterVertexPosition" ret="bool">
+	 		 	<param name="water theWater" type="required" />
+	 		 	<param name="int vertexIndex" type="required" />
+	 		 	<param name="float x" type="required" />
+	 		 	<param name="float y" type="required" />
+	 		 	<param name="float z" type="required" />
+	 		 	<description>Sets the world position of a corner point of a water area.</description>
+	 	</function>
+	</group>
+	<group name="Weapon functions">
+	 	<function name="getSlotFromWeapon" ret="int">
+	 		 	<param name="int weaponid" type="required" />
+	 		 	<description>This function allows you to identify the weapon slot that a weapon belongs to.</description>
+	 	</function>
+	 	<function name="getWeaponIDFromName" ret="int">
+	 		 	<param name="string name" type="required" />
+	 		 	<description>This function will obtain the ID of a particular weapon from its name.</description>
+	 	</function>
+	 	<function name="getWeaponNameFromID" ret="string">
+	 		 	<param name="int id" type="required" />
+	 		 	<description>This function allows you to retrieve the name of a weapon from an ID. Note it also allows you to retrieve the name of other methods of death, such as Fall and Rammed.</description>
+	 	</function>
+	 	<function name="giveWeapon" ret="bool">
+	 		 	<param name="player thePlayer" type="required" />
+	 		 	<param name="int weapon" type="required" />
+	 		 	<param name="int ammo=30" type="optional" />
+	 		 	<param name="bool setAsCurrent=false" type="optional" />
+	 		 	<description>giveWeapon gives a specified weapon to a certain player or ped. There is an optional argument to specify ammunition. For example, a melee weapon doesn't need an ammo argument.</description>
+	 	</function>
+	 	<function name="giveWeaponAmmo" ret="bool">
+	 		 	<param name="player thePlayer" type="required" />
+	 		 	<param name="int weapon" type="required" />
+	 		 	<param name="int ammo" type="required" />
+	 		 	<description>giveWeaponAmmo gives a specified ammount of ammo to a certain player, for a specified weapon (if they already have it).</description>
+	 	</function>
+	 	<function name="setWeaponAmmo" ret="bool">
+	 		 	<param name="player thePlayer" type="required" />
+	 		 	<param name="int weapon" type="required" />
+	 		 	<param name="int totalAmmo" type="required" />
+	 		 	<param name="int ammoInClip=0" type="optional" />
+	 		 	<description>Sets the ammo to a certain amount for a specified weapon (if they already have it), regardless of current ammo.</description>
+	 	</function>
+	 	<function name="takeAllWeapons" ret="bool">
+	 		 	<param name="player thePlayer" type="required" />
+	 		 	<description>This function removes every weapons from a specified player, rendering him unarmed.</description>
+	 	</function>
+	 	<function name="takeWeapon" ret="bool">
+	 		 	<param name="player thePlayer" type="required" />
+	 		 	<param name="int weaponId" type="required" />
+	 		 	<description>This function removes a specified weapon from a certain player's inventory.</description>
+	 	</function>
+	 	<function name="takeWeaponAmmo" ret="bool">
+	 		 	<param name="player thePlayer" type="required" />
+	 		 	<param name="int weapon" type="required" />
+	 		 	<param name="int ammo" type="required" />
+	 		 	<description>takeWeaponAmmo takes a specified amount of ammo from a certain player, for a specified weapon (if they already have it).</description>
+	 	</function>
+	</group>
+	<group name="World functions">
+	 	<function name="getGameSpeed" ret="int">
+	 		 	<description>This function gets the current game speed value.</description>
+	 	</function>
+	 	<function name="getGravity" ret="float">
+	 		 	<description>This function returns the current gravity level for the context in which it is called (server or client).</description>
+	 	</function>
+	 	<function name="getTime" ret="int, int">
+	 		 	<description>This function is used to get the current time in the game. If you want to get the real server time, use getRealTime.</description>
+	 	</function>
+	 	<function name="getWeather" ret="int,int">
+	 		 	<description>This function returns the current weather id.</description>
+	 	</function>
+	 	<function name="getZoneName" ret="string">
+	 		 	<param name="float x" type="required" />
+	 		 	<param name="float y" type="required" />
+	 		 	<param name="float z" type="required" />
+	 		 	<param name="bool citiesonly=false" type="optional" />
+	 		 	<description>This function allows you to retrieve the zone name of a certain location.</description>
+	 	</function>
+	 	<function name="resetSkyGradient" ret="bool">
+	 		 	<description>This function allows restoring of a changed sky gradient as a result of setSkyGradient.</description>
+	 	</function>
+	 	<function name="setGameSpeed" ret="bool">
+	 		 	<param name="int value" type="required" />
+	 		 	<description>This function sets the game speed to the given value.</description>
+	 	</function>
+	 	<function name="setGravity" ret="bool">
+	 		 	<param name="float level" type="required" />
+	 		 	<description>This function sets the server's gravity level. Note that this does not effect peds/players and their vehicles; to set ped/player gravity use setPedGravity.</description>
+	 	</function>
+	 	<function name="setSkyGradient" ret="bool">
+	 		 	<param name="int topRed=0" type="optional" />
+	 		 	<param name="int topGreen=0" type="optional" />
+	 		 	<param name="int topBlue=0" type="optional" />
+	 		 	<param name="int bottomRed=0" type="optional" />
+	 		 	<param name="int bottomGreen=0" type="optional" />
+	 		 	<param name="int bottomBlue=0" type="optional" />
+	 		 	<description>This function changes the sky color to a two-color gradient.</description>
+	 	</function>
+	 	<function name="setTime" ret="bool">
+	 		 	<param name="int hour" type="required" />
+	 		 	<param name="int minute" type="required" />
+	 		 	<description>This function sets the current GTA time to the given time.</description>
+	 	</function>
+	 	<function name="setWeather" ret="bool">
+	 		 	<param name="int weatherID" type="required" />
+	 		 	<description>This function instantly sets the current weather id to the given value.</description>
+	 	</function>
+	 	<function name="setWeatherBlended" ret="bool">
+	 		 	<param name="int weatherID" type="required" />
+	 		 	<description>This function will change the weather from the current weather (set using setWeather) to another weather state over a period of 60 seconds. The weather will be fully changed within 2 minutes. To ensure smooth weather transition, you should not call this function until getWeather indicates that no transition is already being done.</description>
+	 	</function>
+	 	<function name="getCloudsEnabled" ret="bool">
+	 		 	<description>This function will tell you if clouds are enabled or disabled.</description>
+	 	</function>
+	 	<function name="isGarageOpen" ret="bool">
+	 		 	<param name="int garageID" type="required" />
+	 		 	<description>This function checks whether or not a specific garage door is open.</description>
+	 	</function>
+	 	<function name="setCloudsEnabled" ret="bool">
+	 		 	<param name="bool enabled" type="required" />
+	 		 	<description>This function will enable or disable clouds. This is useful for race maps which are placed high up as clouds can cause low FPS.</description>
+	 	</function>
+	 	<function name="setGarageOpen" ret="bool">
+	 		 	<param name="int garageID" type="required" />
+	 		 	<param name="bool open" type="required" />
+	 		 	<description>This function opens or closes the specified garage door in the world.</description>
+	 	</function>
+	</group>
+	<group name="XML functions">
+	 	<function name="xmlCopyFile" ret="xmlnode">
+	 		 	<param name="xmlnode nodeToCopy" type="required" />
+	 		 	<param name="string filepath" type="required" />
+	 		 	<description>This function copies all contents of a certain node in a XML document to a new document file, so the copied node becomes the new file's root node.</description>
+	 	</function>
+	 	<function name="xmlCreateFile" ret="xmlnode">
+	 		 	<param name="string filepath" type="required" />
+	 		 	<param name="string rootNodeName" type="required" />
+	 		 	<description>This function creates a new XML document, which can later be saved to a file by using xmlSaveFile. This function will overwrite the file specified if it already exists.</description>
+	 	</function>
+	 	<function name="xmlDestroyNode" ret="bool">
+	 		 	<param name="xmlnode theXMLNode" type="required" />
+	 		 	<description>This function destroys a XML node from the XML node tree.</description>
+	 	</function>
+	 	<function name="xmlLoadFile" ret="xmlnode">
+	 		 	<param name="string filepath" type="required" />
+	 		 	<description>This function provides an alternative way to load XML files to getResourceConfig.</description>
+	 	</function>
+	 	<function name="xmlNodeGetAttribute" ret="string">
+	 		 	<param name="xmlnode node" type="required" />
+	 		 	<param name="string name" type="required" />
+	 		 	<description>This function is used to return an attribute of a node in a configuration file.</description>
+	 	</function>
+	 	<function name="xmlNodeGetValue" ret="string">
+	 		 	<param name="xmlnode theXMLNode" type="required" />
+	 		 	<description>This function is made to be able to read tag values in XML files (eg. &lt;something&gt;anything&lt;/something&gt;).</description>
+	 	</function>
+	 	<function name="xmlNodeSetAttribute" ret="bool">
+	 		 	<param name="xmlnode node" type="required" />
+	 		 	<param name="string name" type="required" />
+	 		 	<param name="var value" type="required" />
+	 		 	<description>This function is used to edit an attribute of a node in a configuration file.</description>
+	 	</function>
+	 	<function name="xmlNodeSetValue" ret="bool">
+	 		 	<param name="xmlnode theXMLNode" type="required" />
+	 		 	<param name="string value" type="required" />
+	 		 	<description>This function is made to be able to assign values to tags in XML files (eg. &lt;something&gt;anything&lt;/something&gt;).</description>
+	 	</function>
+	 	<function name="xmlSaveFile" ret="bool">
+	 		 	<param name="xmlnode rootNode" type="required" />
+	 		 	<description>This function saves a loaded XML file.</description>
+	 	</function>
+	 	<function name="xmlUnloadFile" ret="bool">
+	 		 	<param name="xmlnode node" type="required" />
+	 		 	<description>Unloads an XML document from memory.</description>
+	 	</function>
+	 	<function name="xmlCreateChild" ret="xmlnode">
+	 		 	<param name="xmlnode parentNode" type="required" />
+	 		 	<param name="string tagName" type="required" />
+	 		 	<description>This function creates a new child node under an XML node.</description>
+	 	</function>
+	 	<function name="xmlFindChild" ret="xmlnode">
+	 		 	<param name="xmlnode parent" type="required" />
+	 		 	<param name="string tagName" type="required" />
+	 		 	<param name="int index" type="required" />
+	 		 	<description>This function returns a named child node of an XML node.</description>
+	 	</function>
+	 	<function name="xmlNodeGetAttributes" ret="table">
+	 		 	<param name="xmlnode node" type="required" />
+	 		 	<description>Returns all the attributes of a specific XML node.</description>
+	 	</function>
+	 	<function name="xmlNodeGetChildren" ret="table/xmlnode">
+	 		 	<param name="xmlnode parent" type="required" />
+	 		 	<param name="int index" type="optional" />
+	 		 	<description>This function returns all children of a particular XML node, or a particular child node.</description>
+	 	</function>
+	 	<function name="xmlNodeGetName" ret="string">
+	 		 	<param name="xmlnode node" type="required" />
+	 		 	<description>Gets the tag name of the specified XML node.</description>
+	 	</function>
+	 	<function name="xmlNodeGetParent" ret="xmlnode">
+	 		 	<param name="xmlnode node" type="required" />
+	 		 	<description>Returns the parent node of an xml node.</description>
+	 	</function>
+	 	<function name="xmlNodeSetName" ret="bool">
+	 		 	<param name="xmlnode node" type="required" />
+	 		 	<param name="string name" type="required" />
+	 		 	<description>Sets the tag name of the specified XML node.</description>
+	 	</function>
+	</group>
+</funcs>
