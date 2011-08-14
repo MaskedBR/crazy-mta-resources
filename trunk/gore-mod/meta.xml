@@ -1,0 +1,10 @@
+<meta>
+    <info author="Crazy" type="script" version="3.0.0" />
+	<script src="client.lua" type="client" />
+	<file src="sounds/hit1.wav" type="client" />
+	<file src="sounds/hit2.wav" type="client" />
+	<file src="sounds/hit3.wav" type="client" />
+	<file src="sounds/hit4.wav" type="client" />
+	<file src="sounds/hit5.wav" type="client" />
+	<file src="sounds/hit6.wav" type="client" />
+</meta>
