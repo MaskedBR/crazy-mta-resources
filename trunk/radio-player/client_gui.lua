@@ -130,6 +130,7 @@ function loadGUI()
 			guiSetInputEnabled(false)
 		end
 	end)
+	--Play Stream
 	addEventHandler("onClientGUIDoubleClick",GUIEditor_Grid[1],
 	function ()
 		if guiGridListGetSelectedItem(GUIEditor_Grid[1]) ~= -1 then
@@ -137,11 +138,12 @@ function loadGUI()
 			startSound(guiGridListGetItemText(GUIEditor_Grid[1],row,column))
 		end
 	end)
+	--Play Sound
 	addEventHandler("onClientGUIDoubleClick",GUIEditor_Grid[2],
 	function ()
 		if guiGridListGetSelectedItem(GUIEditor_Grid[2]) ~= -1 then
 			local row, column = guiGridListGetSelectedItem(GUIEditor_Grid[2])
-			startSound(guiGridListGetItemText(GUIEditor_Grid[2],row,column))
+			startSound(guiGridListGetItemText(GUIEditor_Grid[2],row,column),row)
 		end
 	end)
 	addCommandHandler("radio",

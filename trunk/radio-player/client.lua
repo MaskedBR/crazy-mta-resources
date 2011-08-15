@@ -1,10 +1,21 @@
-﻿currentSound = {
+﻿---------------------------------------------
+--MTA:SA Radio Player mady by Crazy (community - crazyserega1994, forum CrazyDude, irc CrazyDude)
+--Commands:
+--/radio - shows/hides radio controls
+--/vol_up,/vol_down - volume control
+--/stopsound - stops the sound
+----------------------------------------------
+
+nilSound = {
 	["meta"] = {},
 	["length"] = 0,
 	["pointer"] = nil,
 	["stream_title"] = nil,
-	["url"] = nil
+	["url"] = nil,
+	["row"] = nil
 }
+
+currentSound = nilSound
 
 function soundStarted(success,length,streamName)
 	if success then
@@ -49,18 +60,16 @@ function soundStarted(success,length,streamName)
 end
 
 
-function startSound(url)
+function startSound(url,row)
 	outputChatBox("#FFFF00RADIO: #FFFFFFTrying to play "..url,255,0,0,true)
 	if currentSound.pointer then
 		stopSound(currentSound.pointer)
 	end
-	currentSound = {
-		["meta"] = {},
-		["length"] = 0,
-		["pointer"] = nil,
-		["url"] = nil
-	}
+	currentSound = nilSound
 	currentSound.url = url
+	if row then
+		currentSound.row = row
+	end
 	playSound(url)
 end
 
@@ -69,20 +78,19 @@ function onSoundStop()
 		if guiCheckBoxGetSelected(GUIEditor_Checkbox[2]) == true then
 			startSound(currentSound.url)
 		else
-			currentSound = {
-				["meta"] = {},
-				["length"] = 0,
-				["pointer"] = nil,
-				["url"] = nil
-			}
+			if guiCheckBoxGetSelected(GUIEditor_Checkbox[1]) == true then
+				local totalSounds = guiGridListGetRowCount(GUIEditor_Grid[2]) - 1
+				if currentSound.row + 1 > totalSounds then
+					startSound(guiGridListGetItemText(GUIEditor_Grid[2],0,soundColumn),0)
+				else
+					startSound(guiGridListGetItemText(GUIEditor_Grid[2],totalSounds,soundColumn),currentSound.row + 1)
+				end
+			else
+				currentSound = nilSound
+			end
 		end
 	else
-		currentSound = {
-			["meta"] = {},
-			["length"] = 0,
-			["pointer"] = nil,
-			["url"] = nil
-		}
+		currentSound = nilSound
 		outputChatBox("#FFFF00RADIO: #FFFFFFStream stopped.",255,0,0,true)
 	end
 end
@@ -135,6 +143,15 @@ function ()
 		else
 			setSoundVolume(currentSound.pointer,0)
 		end
+	end
+end)
+
+addCommandHandler("stopsound",
+function ()
+	if currentSound.pointer then
+		stopSound(currentSound.pointer)
+		currentSound = nilSound
+		outputChatBox("#FFFF00RADIO: #FFFFFFSound stopped ",255,0,0,true)
 	end
 end)
 --Controls end
