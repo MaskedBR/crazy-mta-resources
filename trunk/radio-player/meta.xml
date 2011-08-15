@@ -1,5 +1,6 @@
 <meta>
-    <info author="Crazy" type="script" version="1.0.0" />
+    <info author="Crazy" type="script" version="1.0.0" name="Sound & Radio Player" description="With this resource you can listen your favorite streams and sounds" />
 	<script src="client.lua" type="client" />
+	<script src="client_gui.lua" type="client" />
 	<script src="server.lua" type="server" />
 </meta>
