@@ -107,7 +107,7 @@ function loadGUI()
 	--Remove stream
 	addEventHandler("onClientGUIClick",GUIEditor_Button[2],
 	function ()
-		if guiGridListGetSelectedItem(GUIEditor_Grid[1]) then
+		if guiGridListGetSelectedItem(GUIEditor_Grid[1]) ~= -1 then
 			local row, column = guiGridListGetSelectedItem(GUIEditor_Grid[1])
 			guiGridListRemoveRow(GUIEditor_Grid[1],row)
 			updateStreamAndSoundList()
@@ -116,7 +116,7 @@ function loadGUI()
 	--Remove sound
 	addEventHandler("onClientGUIClick",GUIEditor_Button[4],
 	function ()
-		if guiGridListGetSelectedItem(GUIEditor_Grid[2]) then
+		if guiGridListGetSelectedItem(GUIEditor_Grid[2]) ~= -1 then
 			local row, column = guiGridListGetSelectedItem(GUIEditor_Grid[2])
 			guiGridListRemoveRow(GUIEditor_Grid[2],row)
 			updateStreamAndSoundList()
@@ -132,14 +132,14 @@ function loadGUI()
 	end)
 	addEventHandler("onClientGUIDoubleClick",GUIEditor_Grid[1],
 	function ()
-		if guiGridListGetSelectedItem(GUIEditor_Grid[1]) then
+		if guiGridListGetSelectedItem(GUIEditor_Grid[1]) ~= -1 then
 			local row, column = guiGridListGetSelectedItem(GUIEditor_Grid[1])
 			startSound(guiGridListGetItemText(GUIEditor_Grid[1],row,column))
 		end
 	end)
 	addEventHandler("onClientGUIDoubleClick",GUIEditor_Grid[2],
 	function ()
-		if guiGridListGetSelectedItem(GUIEditor_Grid[2]) then
+		if guiGridListGetSelectedItem(GUIEditor_Grid[2]) ~= -1 then
 			local row, column = guiGridListGetSelectedItem(GUIEditor_Grid[2])
 			startSound(guiGridListGetItemText(GUIEditor_Grid[2],row,column))
 		end
