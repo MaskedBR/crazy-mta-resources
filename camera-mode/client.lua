@@ -1,34 +1,23 @@
-showed = true
+local showed = true -- LOCALS are faster, according to PIL
+local criticalHudComponents = {
+  ammo = true,
+  armour = true,
+  clock = true,
+  health = true,
+  money = true,
+  radar = true,
+  weapon = true
+}
 
-function hideAll()
-	showChat(false)
-	showPlayerHudComponent("ammo",false)
-	showPlayerHudComponent("armour",false)
-	showPlayerHudComponent("clock",false)
-	showPlayerHudComponent("health",false)
-	showPlayerHudComponent("money",false)
-	showPlayerHudComponent("radar",false)
-	showPlayerHudComponent("weapon",false)
-end
-
-function showAll()
-	showChat(true)
-	showPlayerHudComponent("ammo",true)
-	showPlayerHudComponent("armour",true)
-	showPlayerHudComponent("clock",true)
-	showPlayerHudComponent("health",true)
-	showPlayerHudComponent("money",true)
-	showPlayerHudComponent("radar",true)
-	showPlayerHudComponent("weapon",true)
+function toggleAll(toggle)
+  showChat(toggle)
+  for i,v in pairs(criticalHudComponents) do
+    showPlayerHudComponent(i,toggle)
+  end
 end
 
 bindKey("F2","down",
 function()
-	if showed == true then
-		showed = false
-		hideAll()
-	else
-		showed = true
-		showAll()
-	end
+    showed = not showed 
+    toggleAll(showed)
 end)
